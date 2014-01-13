@@ -3,11 +3,54 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# these pesky files are like a plague
+function md() {
+  mkdir -p "$@" && cd "$@"
+}
+
+function f() {
+  find . -name "$1"
+}
+
+# Get Sublime: http://www.sublimetext.com/
+function s() {
+  if [ $# -eq 0 ]; then
+    subl .
+  else
+    subl "${@}"
+  fi
+}
+
+# Get NERDTree: https://github.com/scrooloose/nerdtree
+function v() {
+  if [ $# -eq 0 ]; then
+    vim +NERDTree
+  else
+    vim "${@}"
+  fi
+}
+
+# PHP 5.4.0+: http://j.mp/php-s
+function pserv() {
+  local port="${1:-8888}"
+  php -S "0.0.0.0:${port}"
+}
+
+# These pesky files are like a plague
 alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
 
 #
-# fancy multiline prompt
+# OS X goodness
+#
+alias air="networksetup -setairportpower en1" # on | off
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias saver="open -a ScreenSaverEngine"
+
+function getip() {
+  ipconfig getifaddr ${1:-en1}
+}
+
+#
+# Fancy multiline prompt
 #
 if [[ $TERM == screen ]] ; then
   PS1='\[\033k\033\\\]' # relay prompt to GNU Screen
