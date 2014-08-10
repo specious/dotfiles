@@ -38,16 +38,29 @@ function pserv() {
 # These pesky files are like a plague
 alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
 
-#
-# OS X goodness
-#
-alias air="networksetup -setairportpower en1" # on | off
-alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias saver="open -a ScreenSaverEngine"
-
+# Show local IP address
 function getip() {
   ipconfig getifaddr ${1:-en1}
 }
+
+#
+# OS X goodness
+#
+
+# Control your wireless network adapter
+alias air="networksetup -setairportpower en1" # on | off
+alias airup="air off; air on"
+alias airlist="networksetup -listpreferredwirelessnetworks en1"
+alias airdel="networksetup -removepreferredwirelessnetwork en1"
+
+# Lock your computer
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Turn on screensaver
+alias saver="open -a ScreenSaverEngine"
+
+# Quick preview
+alias ql="qlmanage -p 2>/dev/null"
 
 #
 # Fancy multiline prompt
