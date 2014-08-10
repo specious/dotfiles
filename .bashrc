@@ -43,6 +43,9 @@ function getip() {
   ipconfig getifaddr ${1:-en1}
 }
 
+# Show WAN IP address
+alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
+
 #
 # OS X goodness
 #
