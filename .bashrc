@@ -19,6 +19,21 @@ function f() {
 alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
 
 #
+# Conversions
+#
+
+# Base 10 to binary
+function d2b() {
+  echo "ibase=10;obase=2; $@" | bc
+}
+
+# Hex to binary
+function h2b() {
+  # input to 'bc' must be upper case
+  echo "ibase=16;obase=2; $(echo $@ | tr '[a-z]' '[A-Z]')" | bc
+}
+
+#
 # Networking
 #
 
