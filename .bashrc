@@ -1,5 +1,5 @@
 #
-# File system accessories
+# File system
 #
 
 alias ..="cd .."
@@ -15,7 +15,7 @@ function f() {
   find . -name "$1"
 }
 
-# These pesky files are like a plague
+# These .DS_Store files are like a plague
 alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
 
 #
@@ -34,16 +34,20 @@ function h2b() {
 }
 
 #
-# Networking
+# Network
 #
 
-# Show local IP address
+# Local IP address
 function getip() {
   ipconfig getifaddr ${1:-en1}
 }
 
-# Show WAN IP address
+# WAN IP address
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+#
+# Launch stuff
+#
 
 # Quick PHP server - requires PHP 5.4.0+: http://j.mp/php-s
 function pserv() {
@@ -51,11 +55,7 @@ function pserv() {
   php -S "0.0.0.0:${port}"
 }
 
-#
-# Quick access
-#
-
-# Quick SublimeText session - get it: http://www.sublimetext.com/
+# Quick SublimeText ( http://www.sublimetext.com/ )
 function s() {
   if [ $# -eq 0 ]; then
     subl .
@@ -64,17 +64,11 @@ function s() {
   fi
 }
 
-# Quick NERDTree session - get it: https://github.com/scrooloose/nerdtree
-function v() {
-  if [ $# -eq 0 ]; then
-    vim +NERDTree
-  else
-    vim "${@}"
-  fi
-}
-
 #
-# Fancy multiline prompt
+# Fancy two-line prompt
+#
+# ┌───=[ specious :: sharp -( 0 )-[ ~ ]
+# └──(
 #
 
 if [[ $TERM == screen ]] ; then
@@ -86,8 +80,20 @@ fi
 PS1="\n\[\e[31;1m\]┌───=[ \[\e[39;1m\]\u \[\e[31;1m\]:: \[\e[33;1m\]\h \[\e[31;1m\]-( \[\e[39;1m\]\j\[\e[31;1m\] )-[ \[\e[39;1m\]\w\[\e[31;1m\] ]\n\[\e[31;1m\]└──( \[\e[0m\]$PS1"
 
 #
-# Mac OS X goodness
+# Mac OS X
 #
+
+# Quit an application from the command line
+quit () {
+  for app in $*; do
+    osascript -e 'quit app "'$app'"'
+  done
+}
+
+# List connected USB devices
+function lsusb() {
+  ioreg -p IOUSB -w 0
+}
 
 # Control your wireless network adapter
 alias air="networksetup -setairportpower en1" # on | off
