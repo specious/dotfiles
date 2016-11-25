@@ -45,6 +45,44 @@ function getip() {
 # WAN IP address
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+function urlencode() {
+  for a in "$@"; do
+    echo $(php -r "echo urlencode('$a');")
+  done
+}
+
+#
+# URL convenience
+#
+
+# URL encode parameters, preserving "quoted terms"
+function qterms() {
+  for a in "$@"; do
+    case $a in
+      *[" "]* ) echo $(urlencode "\"$a\"")
+        ;;
+     *)
+        echo $a
+    esac
+  done
+}
+
+# Google query builder
+function goog() {
+  IFS=$'\n'
+  terms=($(qterms $@))
+  IFS="+"
+  echo "https://www.google.com/#q=${terms[*]}"
+  IFS=$' \t\n'
+}
+
+# Google query builder (image search)
+function googi() {
+  IFS=
+  echo "$(gg $@)&tbm=isch"
+  IFS=$' \t\n'
+}
+
 #
 # Launch stuff
 #
