@@ -58,6 +58,8 @@ set hls
 set incsearch
 set visualbell
 
+let mapleader="\<Space>"
+
 " Toggle line numbers
 nmap <F4> :set invnumber<CR>
 
@@ -93,7 +95,14 @@ nnoremap <silent> p p`]
 " Clear search highlighting
 nnoremap <C-c> :noh<CR><C-c>
 
-" Commenting blocks of code
+" Select text most recently edited or pasted
+nnoremap gV `[v`]
+
+" Expand regions (terryma/vim-expand-region)
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Comment blocks of code
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
 autocmd FileType conf,fstab       let b:comment_leader = '# '
@@ -110,7 +119,6 @@ nmap <leader>pp :setlocal paste! paste?<CR>
 " Quicker command line
 nnoremap ; :
 
-let mapleader="\<Space>"
 nmap <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
 nmap <silent> <leader>bi :PluginInstall<CR>
 nmap <silent> <leader>m :NERDTreeToggle<CR>
@@ -125,10 +133,6 @@ let g:airline_left_sep = '»'
 " Color scheme
 colorscheme delek
 nmap <F3> :colorscheme torte<CR>
-
-" Expand regions (terryma/vim-expand-region)
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 
 " Save a file as root
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
