@@ -10,10 +10,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'wavded/vim-stylus'
 Plugin 'elmcast/elm-vim'
+Plugin 'guns/vim-sexp'
+Plugin 'kovisoft/paredit'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
-Plugin 'kovisoft/slimv'
+Plugin 'eapache/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/ag'
@@ -25,6 +27,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jreybert/vimagit'
+Plugin 'AndrewRadev/switch.vim'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'rstacruz/vim-xtract'
@@ -60,11 +63,20 @@ set visualbell
 
 let mapleader="\<Space>"
 
+" Quicker command line
+nnoremap ; :
+
+" Toggle word wrapping
+nmap <F2> :set wrap!<CR>
+
 " Toggle line numbers
 nmap <F4> :set invnumber<CR>
 
+" Toggle rainbow parentheses
+nmap <F5> :RainbowParenthesesToggleAll<CR>
+
 " Show trailing spaces
-set listchars=trail:∙
+set list listchars=trail:∙
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
@@ -81,8 +93,18 @@ endif
 " Join lines and restore cursor location (J)
 nnoremap J mjJ`j
 
-" Join lines without creating whitespace between them
-:nnoremap J gJ
+" Like gJ, but always remove spaces ( http://vi.stackexchange.com/a/440 )
+fun! JoinSpaceless()
+    execute 'normal gJ'
+
+    " Character under cursor is whitespace?
+    if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+        " When remove it!
+        execute 'normal dw'
+    endif
+endfun
+
+nnoremap <leader>j :call JoinSpaceless()<CR>
 
 " Insert empty line
 nmap <CR> O<Esc>
@@ -113,12 +135,16 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+" Hot-reload code in connected Clojure REPL
+au Filetype clojure nmap <C-c><C-k> :Require<CR>
+
+" Set filetype for uncommon extensions
+au BufRead,BufNewFile *.boot set filetype=clojure
+
 " Toggle paste mode
 nmap <leader>pp :setlocal paste! paste?<CR>
 
-" Quicker command line
-nnoremap ; :
-
+" Instrumental incantations
 nmap <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
 nmap <silent> <leader>bi :PluginInstall<CR>
 nmap <silent> <leader>m :NERDTreeToggle<CR>
