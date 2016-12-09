@@ -46,8 +46,8 @@ set noeol
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set backspace=start
-set display=lastline " Do not hide contents of long lines
+set backspace=indent,eol,start " Conventional backspace behavior
+set display=lastline           " Do not hide contents of long lines
 set undoreload=0
 set wildmenu
 set wildmode=longest:full,full
@@ -56,9 +56,8 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.sw?
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
-set nu
-set hls
-set incsearch
+set nu                         " Display line numbers
+set hls                        " Highlight search matches
 set visualbell
 
 let mapleader="\<Space>"
