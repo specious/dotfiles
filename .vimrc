@@ -62,6 +62,7 @@ set incsearch
 set visualbell
 
 let mapleader="\<Space>"
+let maplocalleader=","
 
 " Quicker command line
 nnoremap ; :
@@ -75,8 +76,22 @@ nmap <F4> :set invnumber<CR>
 " Toggle rainbow parentheses
 nmap <F5> :RainbowParenthesesToggleAll<CR>
 
+" Quick save
+nmap <leader>w :w<CR>
+
+" Quit
+nmap <silent> <leader>q :q<CR>
+
+" Copy to clipboard
+vnoremap <leader>y  "+y
+nnoremap <leader>yy "+yy
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+
 " Show trailing spaces
-set list listchars=trail:∙
+set list listchars=tab:\ \ ,trail:∙
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
@@ -95,13 +110,13 @@ nnoremap J mjJ`j
 
 " Like gJ, but always remove spaces ( http://vi.stackexchange.com/a/440 )
 fun! JoinSpaceless()
-    execute 'normal gJ'
+  execute 'normal gJ'
 
-    " Character under cursor is whitespace?
-    if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
-        " When remove it!
-        execute 'normal dw'
-    endif
+  " Character under cursor is whitespace?
+  if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+    " When remove it!
+    execute 'normal dw'
+  endif
 endfun
 
 nnoremap <leader>j :call JoinSpaceless()<CR>
@@ -155,6 +170,7 @@ nmap <silent> <leader>canary :exec 'silent !open -a "Google Chrome Canary" % &'<
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
 let g:airline_left_sep = '»'
+au VimEnter * AirlineTheme lucius
 
 " Color scheme
 colorscheme delek
