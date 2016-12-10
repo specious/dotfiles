@@ -58,6 +58,7 @@ set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
 set nu                         " Display line numbers
 set hls                        " Highlight search matches
+set noincsearch                " Turn off incremental search
 set visualbell
 
 let mapleader="\<Space>"
@@ -69,8 +70,11 @@ nnoremap ; :
 " Toggle word wrapping
 nmap <F2> :set wrap!<CR>
 
+" Toggle relative line numbers
+nmap <F3> :set invrelativenumber<CR>
+
 " Toggle line numbers
-nmap <F4> :set invnumber<CR>
+nmap <F4> :set invnumber!<CR>
 
 " Toggle rainbow parentheses
 nmap <F5> :RainbowParenthesesToggleAll<CR>
@@ -171,9 +175,14 @@ set laststatus=2 " show airline with only one screen
 let g:airline_left_sep = '»'
 au VimEnter * AirlineTheme lucius
 
-" Color scheme
+" Default color scheme
 colorscheme delek
-nmap <F3> :colorscheme torte<CR>
+
+" Switch color scheme
+nmap <leader><F2> :colorscheme 
+nmap <leader><F3> :RandomColorScheme<CR>
+nmap <F6> :PrevColorScheme<CR>
+nmap <F7> :NextColorScheme<CR>
 
 " Save a file as root
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
