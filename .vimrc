@@ -11,6 +11,7 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'wavded/vim-stylus'
 Plugin 'elmcast/elm-vim'
 Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'kovisoft/paredit'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-commentary'
@@ -56,6 +57,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.sw?
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
+set wildcharm=<C-z>            " Trigger tab completion via <C-z>
 set nu                         " Display line numbers
 set hls                        " Highlight search matches
 set noincsearch                " Turn off incremental search
@@ -169,6 +171,9 @@ nmap <silent> <leader>m :NERDTreeToggle<CR>
 nmap <silent> <leader>chrome :exec 'silent !open -a "Google Chrome Dev" % &'<CR>
 nmap <silent> <leader>canary :exec 'silent !open -a "Google Chrome Canary" % &'<CR>
 
+" Execute current file
+nmap <silent> <leader>rr :!./%<CR>
+
 " Configure status line (vim-airline/vim-airline)
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
@@ -179,7 +184,7 @@ au VimEnter * AirlineTheme lucius
 colorscheme delek
 
 " Switch color scheme
-nmap <leader><F2> :colorscheme 
+nmap <leader><F2> :colorscheme <C-z>
 nmap <leader><F3> :RandomColorScheme<CR>
 nmap <F6> :PrevColorScheme<CR>
 nmap <F7> :NextColorScheme<CR>
