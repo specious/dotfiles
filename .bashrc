@@ -79,7 +79,7 @@ function goog() {
 # Google query builder (image search)
 function googi() {
   IFS=
-  echo "$(gg $@)&tbm=isch"
+  echo "$(goog $@)&tbm=isch"
   IFS=$' \t\n'
 }
 
