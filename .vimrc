@@ -98,6 +98,10 @@ vnoremap <leader>p "+p
 " Show trailing spaces
 set list listchars=tab:\ \ ,trail:∙
 
+" Show/hide tabs
+nmap <silent> <leader>tt :set listchars+=tab:>-<CR>
+nmap <silent> <leader>TT :set listchars-=tab:>-<CR>
+
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
 map <C-k> <C-W>k
