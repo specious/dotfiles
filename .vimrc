@@ -87,6 +87,9 @@ nmap <leader>w :w<CR>
 " Quit
 nmap <silent> <leader>q :q<CR>
 
+" Reload file in current buffer, thereby resetting undo history
+nmap <silent> <leader>e :e<CR>
+
 " Copy to clipboard
 vnoremap <leader>y  "+y
 nnoremap <leader>yy "+yy
