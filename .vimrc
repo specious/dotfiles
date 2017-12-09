@@ -133,6 +133,10 @@ nnoremap <leader>j :call JoinSpaceless()<CR>
 " Insert empty line
 nmap <CR> O<Esc>
 
+" Insert empty line without leaving normal mode
+nmap <leader>o o<ESC>k
+nmap <leader>O O<ESC>j
+
 " Jump to end of pasted text
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
