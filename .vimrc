@@ -85,7 +85,7 @@ nmap <F5> :RainbowParenthesesToggleAll<CR>
 nmap <leader>w :w<CR>
 
 " Quit
-nmap <silent> <leader>q :q<CR>
+nmap <silent> <leader>q :qa!<CR>
 
 " Reload file in current buffer, thereby resetting undo history
 nmap <silent> <leader>e :e<CR>
