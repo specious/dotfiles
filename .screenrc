@@ -19,4 +19,4 @@ defscrollback 32000
 # %Y-%M-%d : current date
 # %c       : current time (24 hour format)
 #
-caption always "%{= kw}%-w%{=b bw}%n %t%{-}%+w %-= %{=b}%S :: @%H - %Y-%M-%d %c"
+caption always "%{= kw}%-w%{=b bw}%n %t%{-}%+w%-=%{=b}%S :: @%H - %Y-%M-%d %c"
