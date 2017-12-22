@@ -90,6 +90,9 @@ nmap <silent> <leader>q :qa!<CR>
 " Reload file in current buffer, thereby resetting undo history
 nmap <silent> <leader>e :e<CR>
 
+" Display full path of current file
+nmap <silent> <leader>g :echo expand("%:p")<CR>
+
 " Copy to clipboard
 vnoremap <leader>y  "+y
 nnoremap <leader>yy "+yy
