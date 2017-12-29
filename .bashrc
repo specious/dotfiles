@@ -7,11 +7,11 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-function md() {
+function md () {
   mkdir -p "$@" && cd "$@"
 }
 
-function f() {
+function f () {
   find . -name "$1"
 }
 
@@ -23,12 +23,12 @@ alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
 #
 
 # Base 10 to binary
-function d2b() {
+function d2b () {
   echo "ibase=10;obase=2; $@" | bc
 }
 
 # Hex to binary
-function h2b() {
+function h2b () {
   # input to 'bc' must be upper case
   echo "ibase=16;obase=2; $(echo $@ | tr '[a-z]' '[A-Z]')" | bc
 }
@@ -45,7 +45,7 @@ function getip() {
 # WAN IP address
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
-function urlencode() {
+function urlencode () {
   for a in "$@"; do
     echo $(php -r "echo urlencode('$a');")
   done
@@ -56,7 +56,7 @@ function urlencode() {
 #
 
 # URL encode parameters, preserving "quoted terms"
-function qterms() {
+function qterms () {
   for a in "$@"; do
     case $a in
       *[" "]* ) echo $(urlencode "\"$a\"")
@@ -68,7 +68,7 @@ function qterms() {
 }
 
 # Google query builder
-function goog() {
+function goog () {
   IFS=$'\n'
   terms=($(qterms $@))
   IFS="+"
@@ -77,7 +77,7 @@ function goog() {
 }
 
 # Google query builder (image search)
-function googi() {
+function googi () {
   IFS=
   echo "$(goog $@)&tbm=isch"
   IFS=$' \t\n'
@@ -88,13 +88,13 @@ function googi() {
 #
 
 # Quick PHP server - requires PHP 5.4.0+: http://j.mp/php-s
-function pserv() {
+function pserv () {
   local port="${1:-8888}"
   php -S "0.0.0.0:${port}"
 }
 
 # Quick SublimeText ( http://www.sublimetext.com/ )
-function s() {
+function s () {
   if [ $# -eq 0 ]; then
     subl .
   else
@@ -144,14 +144,14 @@ esac
 #
 
 # Quit an application from the command line
-quit () {
+function quit () {
   for app in $*; do
     osascript -e 'quit app "'$app'"'
   done
 }
 
 # List connected USB devices
-function lsusb() {
+function lsusb () {
   ioreg -p IOUSB -w 0
 }
 
