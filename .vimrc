@@ -68,6 +68,7 @@ let maplocalleader=","
 
 " Quicker command line
 nnoremap ; :
+vnoremap ; :
 
 " Toggle word wrapping
 nmap <F2> :set wrap!<CR>
