@@ -2,6 +2,10 @@ defutf8 on
 startup_message off
 defscrollback 32000
 
+# Disable screen lock actuation
+bind x
+bind ^x
+
 # Fancy status line
 #
 # http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
