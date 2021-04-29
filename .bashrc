@@ -84,6 +84,17 @@ function googi () {
 }
 
 #
+# git enhancements
+#
+
+# history of a file's size by revision
+function git-filehist() {
+  for rev in $(git rev-list HEAD -- $1); do
+    git ls-tree -r -l $rev $1
+  done
+}
+
+#
 # Launch stuff
 #
 
