@@ -170,6 +170,9 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+" Shift text left by one space
+map <leader>, :s/^ //<CR>
+
 " Hot-reload code in connected Clojure REPL
 au Filetype clojure nmap <C-c><C-k> :Require<CR>
 
