@@ -3,7 +3,7 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 set nocompatible
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
@@ -71,28 +71,28 @@ nnoremap ; :
 vnoremap ; :
 
 " Toggle word wrapping
-nmap <F2> :set wrap!<CR>
+map <F2> :set wrap!<CR>
 
 " Toggle relative line numbers
-nmap <F3> :set invrelativenumber<CR>
+map <F3> :set invrelativenumber<CR>
 
 " Toggle line numbers
-nmap <F4> :set invnumber!<CR>
+map <F4> :set invnumber!<CR>
 
 " Toggle rainbow parentheses
-nmap <F5> :RainbowParenthesesToggleAll<CR>
+map <F5> :RainbowParenthesesToggleAll<CR>
 
 " Quick save
-nmap <leader>w :w<CR>
+map <leader>w :w<CR>
 
 " Quit
-nmap <silent> <leader>q :qa!<CR>
+map <silent> <leader>q :qa!<CR>
 
 " Reload file in current buffer, thereby resetting undo history
-nmap <silent> <leader>e :e<CR>
+map <silent> <leader>e :e<CR>
 
 " Display full path of current file
-nmap <silent> <leader>g :echo expand("%:p")<CR>
+map <silent> <leader>g :echo expand("%:p")<CR>
 
 " Copy to clipboard
 vnoremap <leader>y  "+y
@@ -106,8 +106,8 @@ vnoremap <leader>p "+p
 set list listchars=tab:\ \ ,trail:∙
 
 " Show/hide tabs
-nmap <silent> <leader>tt :set listchars+=tab:>-<CR>
-nmap <silent> <leader>TT :set listchars-=tab:>-<CR>
+map <silent> <leader>tt :set listchars+=tab:>-<CR>
+map <silent> <leader>TT :set listchars-=tab:>-<CR>
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
@@ -138,11 +138,11 @@ endfun
 nnoremap <leader>j :call JoinSpaceless()<CR>
 
 " Insert empty line
-nmap <CR> O<Esc>
+map <CR> O<Esc>
 
 " Insert empty line without leaving normal mode
-nmap <leader>o o<ESC>k
-nmap <leader>O O<ESC>j
+map <leader>o o<ESC>k
+map <leader>O O<ESC>j
 
 " Jump to end of pasted text
 vnoremap <silent> y y`]
@@ -177,17 +177,17 @@ au Filetype clojure nmap <C-c><C-k> :Require<CR>
 au BufRead,BufNewFile *.boot set filetype=clojure
 
 " Toggle paste mode
-nmap <leader>pp :setlocal paste! paste?<CR>
+map <leader>pp :setlocal paste! paste?<CR>
 
 " Instrumental incantations
-nmap <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
-nmap <silent> <leader>bi :PluginInstall<CR>
-nmap <silent> <leader>m :NERDTreeToggle<CR>
-nmap <silent> <leader>chrome :exec 'silent !open -a "Google Chrome Dev" % &'<CR>
-nmap <silent> <leader>canary :exec 'silent !open -a "Google Chrome Canary" % &'<CR>
+map <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
+map <silent> <leader>bi :PluginInstall<CR>
+map <silent> <leader>m :NERDTreeToggle<CR>
+map <silent> <leader>chrome :exec 'silent !open -a "Google Chrome Dev" % &'<CR>
+map <silent> <leader>canary :exec 'silent !open -a "Google Chrome Canary" % &'<CR>
 
 " Execute current file
-nmap <silent> <leader>rr :!./%<CR>
+map <silent> <leader>rr :!./%<CR>
 
 " Configure status line (vim-airline/vim-airline)
 let g:airline#extensions#tabline#enabled = 1
@@ -196,13 +196,13 @@ let g:airline_left_sep = '»'
 au VimEnter * AirlineTheme lucius
 
 " Default color scheme
-colorscheme delek
+colorscheme solarized
 
 " Switch color scheme
-nmap <leader><F2> :colorscheme <C-z>
-nmap <leader><F3> :RandomColorScheme<CR>
-nmap <F6> :PrevColorScheme<CR>
-nmap <F7> :NextColorScheme<CR>
+map <leader><F2> :colorscheme <C-z>
+map <leader><F3> :RandomColorScheme<CR>
+map <F6> :PrevColorScheme<CR>
+map <F7> :NextColorScheme<CR>
 
 " Save a file as root
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
