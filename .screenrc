@@ -10,14 +10,14 @@ bind ^x
 #
 # http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
 #
-# %{= kw}  : set black background and white text
+# %{= kw}  : set (w)hite text on blac(k) background
 # %-w      : numbers and titles of all windows before the current one
-# %{=b bw} : set blue background and bold white text
+# %{=b bw} : set bold font with (w)hite text on (b)lue background
 # %n %t    : number and title of current window
 # %{-}     : reset attributes and colors
 # %+w      : numbers and titles of all windows after the current one
 # %-=      : pad with spaces (divider)
-# %{=b}    : set bold text
+# %{=b}    : set bold font
 # %S       : screen session name
 # %H       : host name
 # %Y-%M-%d : current date
