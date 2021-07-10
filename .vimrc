@@ -144,6 +144,9 @@ map <CR> O<Esc>
 map <leader>o o<ESC>k
 map <leader>O O<ESC>j
 
+" Insert single character
+:nnoremap <leader>i i_<Esc>r
+
 " Jump to end of pasted text
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
