@@ -3,7 +3,7 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
