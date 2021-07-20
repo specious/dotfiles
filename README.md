@@ -1,22 +1,34 @@
-These are useful excerpts form some of my configuration files. If you can improve something, by all means open a pull request.
+Pieces to share from the configuration files I use.
 
-I'm sharing my entire configuration files as I use them in my keybase public folder: https://keybase.pub/tknomad/files/config/
+My entire configuration files as I use them are here: https://keybase.pub/tknomad/files/config/
 
 ## .bashrc
 
-Noteworthy functionality I share between bash and zsh. I generally have it located at `/etc/sh` and sourced in my `bashrc` and `zshrc` with:
+Functionality I share between bash and zsh. I generally have it available as `/etc/sh` which is sourced by both my `.bashrc` and `.zshrc` files with the line:
 
-```
+```sh
 . /etc/sh
 ```
 
-My fancy bash prompt with git integration is available for [bash](https://gist.github.com/specious/8244801) and [zsh](https://github.com/specious/bender).
+My custom prompt with git integration is available for:
+- [bash](https://gist.github.com/specious/8244801)
+- [zsh](https://github.com/specious/bender)
 
 ## .vimrc
 
-Vim is currently my primary editor. Every line in my .vimrc is intentional.
+Vim is currently my favorite editor. Every line in my .vimrc is intentional.
 
 Resources I found helpful:
 
 * [Vim annoyances](https://sanctum.geek.nz/arabesque/vim-annoyances/)
-* [Pentadactyl](http://5digits.org/pentadactyl/) (Firefox add-on)
+
+## Also I use...
+
+Firefox add-ons:
+- [Markdown Viewer](https://github.com/simov/markdown-viewer)
+- [QR Code](https://addons.mozilla.org/en-US/firefox/addon/qr-code-address-bar/)
+- [Pentadactyl](http://bug.5digits.org/pentadactyl/) (used to work with Firefox but is now availabe as a [Palemoon add-on](https://addons.palemoon.org/addon/pentadactyl-community/))
+
+## Contributing
+
+If you can improve something, by all means open a pull request.
