@@ -47,9 +47,11 @@ set binary
 set noeol
 set expandtab
 set tabstop=2
+set list listchars=tab:\ \ ,trail:∙ " Show trailing spaces (by default)
+set listchars+=tab:>-               " Show tabs (until turned off)
 set shiftwidth=2
-set backspace=indent,eol,start " Conventional backspace behavior
-set display=lastline           " Do not hide contents of long lines
+set backspace=indent,eol,start      " Conventional backspace behavior
+set display=lastline                " Do not hide contents of long lines
 set undoreload=0
 set wildmenu
 set wildmode=longest:full,full
@@ -58,10 +60,10 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.sw?
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
-set wildcharm=<C-z>            " Trigger tab completion via <C-z>
-set nu                         " Display line numbers
-set hls                        " Highlight search matches
-set noincsearch                " Turn off incremental search
+set wildcharm=<C-z>                 " Trigger tab completion via <C-z>
+set nu                              " Display line numbers
+set hls                             " Highlight search matches
+set noincsearch                     " Turn off incremental search
 set visualbell
 
 let mapleader="\<Space>"
@@ -102,9 +104,6 @@ nnoremap <leader>yy "+yy
 " Paste from clipboard
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
-
-" Show trailing spaces
-set list listchars=tab:\ \ ,trail:∙
 
 " Show/hide tabs
 map <silent> <leader>tt :set listchars+=tab:>-<CR>
