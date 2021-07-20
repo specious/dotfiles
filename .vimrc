@@ -137,8 +137,11 @@ endfun
 
 nnoremap <leader>j :call JoinSpaceless()<CR>
 
-" Insert empty line
-map <CR> O<Esc>
+" Insert empty line before current line
+map <leader><CR> O<Esc>
+
+" Insert empty line after current line
+map <CR> o<Esc>
 
 " Insert empty line without leaving normal mode
 map <leader>o o<ESC>k
