@@ -158,6 +158,9 @@ nnoremap <silent> p p`]
 " Clear search highlighting
 nnoremap <C-c> :noh<CR><C-c>
 
+" Replace highlighted search results
+map <leader>R :%s///g<left><left>
+
 " Select text most recently edited or pasted
 nnoremap gV `[v`]
 
