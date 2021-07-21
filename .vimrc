@@ -191,19 +191,19 @@ map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
 
-" Configure status line (vim-airline/vim-airline)
+" Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
 let g:airline_left_sep = '»'
 au VimEnter * AirlineTheme lucius
 
-" Default color scheme
-colorscheme solarized
-
-" Switch color scheme
+" Switch color scheme (show name after switching)
 map <leader><F2> :colorscheme <C-z>
-map <leader><F3> :RandomColorScheme<CR>
-map <F6> :PrevColorScheme<CR>
-map <F7> :NextColorScheme<CR>
+map <leader><F3> :RandomColorScheme<CR>:colorscheme<CR>
+map <F6> :PrevColorScheme<CR>:colorscheme<CR>
+map <F7> :NextColorScheme<CR>:colorscheme<CR>
+
+" Default color scheme
+colorscheme torte
 
 highlight LineNr ctermfg=green
