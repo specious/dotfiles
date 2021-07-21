@@ -39,7 +39,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 call vundle#end()
 
-" Enable loading of plugins for specific file types
+" Enable loading of file type specific plugins and indent rules
 filetype plugin indent on
 
 syntax on
