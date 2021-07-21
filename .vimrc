@@ -180,7 +180,7 @@ au Filetype clojure nmap <C-c><C-k> :Require<CR>
 au BufRead,BufNewFile *.boot set filetype=clojure
 
 " Toggle paste mode
-map <leader>pp :setlocal paste! paste?<CR>
+map <leader><Space>p :setlocal paste! paste?<CR>
 
 " Instrumental incantations
 map <leader>ss :exec 'source ~/.vimrc'<CR>
