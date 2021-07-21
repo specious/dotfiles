@@ -70,8 +70,7 @@ let mapleader="\<Space>"
 let maplocalleader=","
 
 " Quicker command line
-nnoremap ; :
-vnoremap ; :
+map <leader>; :
 
 " Toggle word wrapping
 map <F2> :set wrap!<CR>
