@@ -186,8 +186,7 @@ map <leader>pp :setlocal paste! paste?<CR>
 map <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
 map <silent> <leader>bi :PluginInstall<CR>
 map <silent> <leader>m :NERDTreeToggle<CR>
-map <silent> <leader>chrome :exec 'silent !open -a "Google Chrome Dev" % &'<CR>
-map <silent> <leader>canary :exec 'silent !open -a "Google Chrome Canary" % &'<CR>
+map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
