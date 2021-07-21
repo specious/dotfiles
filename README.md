@@ -1,6 +1,6 @@
 Pieces to share from the configuration files I use.
 
-My entire configuration files as I use them are here: https://keybase.pub/tknomad/files/config/
+Some of my configuration files are also posted here: https://keybase.pub/tknomad/files/config/
 
 ## .bashrc
 
@@ -9,10 +9,11 @@ Functionality I share between bash and zsh. I generally have it available as `/e
 ```sh
 . /etc/sh
 ```
-
 My custom prompt with git integration is available for:
 - [bash](https://gist.github.com/specious/8244801)
 - [zsh](https://github.com/specious/bender)
+
+Some parts may be specific to the Linux system I use.
 
 ## .vimrc
 
