@@ -91,10 +91,10 @@ map <leader>w :w<CR>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " Quit
-map <silent> <leader>q :qa!<CR>
+map <leader>q :qa!<CR>
 
 " Reload file in current buffer, thereby resetting undo history
-map <silent> <leader>e :e<CR>
+map <leader>e :e<CR>
 
 " Display full path of current file
 map <silent> <leader>g :echo expand("%:p")<CR>
@@ -108,8 +108,8 @@ nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
 " Show/hide tabs
-map <silent> <leader>tt :set listchars+=tab:>-<CR>
-map <silent> <leader>TT :set listchars-=tab:>-<CR>
+map <leader>tt :set listchars+=tab:>-<CR>
+map <leader>TT :set listchars-=tab:>-<CR>
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
@@ -183,7 +183,7 @@ au BufRead,BufNewFile *.boot set filetype=clojure
 map <leader>pp :setlocal paste! paste?<CR>
 
 " Instrumental incantations
-map <silent> <leader>ss :exec 'source ~/.vimrc'<CR>
+map <leader>ss :exec 'source ~/.vimrc'<CR>
 map <silent> <leader>bi :PluginInstall<CR>
 map <silent> <leader>m :NERDTreeToggle<CR>
 map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
