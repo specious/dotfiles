@@ -7,31 +7,31 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ervandew/ag'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'wavded/vim-stylus'
 Plugin 'elmcast/elm-vim'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'kovisoft/paredit'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-commentary'
 Plugin 'suy/vim-context-commentstring'
-Plugin 'tpope/vim-surround'
-Plugin 'eapache/rainbow_parentheses.vim'
-Plugin 'tpope/vim-fireplace'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'ervandew/ag'
 Plugin 'terryma/vim-expand-region'
-Plugin 'marcweber/vim-addon-mw-utils' " Required by garbas/vim-snipmate
+Plugin 'tpope/vim-speeddating'
+Plugin 'AndrewRadev/switch.vim'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'tomtom/tlib_vim'              " Required by garbas/vim-snipmate
+Plugin 'marcweber/vim-addon-mw-utils' " Required by garbas/vim-snipmate
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-repeat'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'kovisoft/paredit'
+Plugin 'tpope/vim-surround'
+Plugin 'eapache/rainbow_parentheses.vim'
+Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jreybert/vimagit'
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'rstacruz/vim-xtract'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -40,7 +40,9 @@ Plugin 'tpope/vim-vividchalk'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 call vundle#end()
-filetype plugin indent on " see: http://vimdoc.sourceforge.net/htmldoc/filetype.html
+
+" Enable loading of plugins for specific file types
+filetype plugin indent on
 
 syntax on
 set binary
