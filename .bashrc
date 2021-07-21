@@ -1,5 +1,3 @@
-#!/bin/bash
-
 browser=firefox-developer-edition
 alias www=$browser
 
