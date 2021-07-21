@@ -224,6 +224,11 @@ json() {
   cat $1 | jq .
 }
 
+# Reindent a file, e.g. reindent 2 4 index.js
+reindent() {
+  vim -e "+set noet | retab! $1 | set et ts=$2 | retab | wq" $3
+}
+
 # Get repository for NPM package
 nrepo() {
   npm v $1 repository.url
