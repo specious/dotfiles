@@ -87,6 +87,9 @@ map <F5> :RainbowParenthesesToggleAll<CR>
 " Quick save
 map <leader>w :w<CR>
 
+" Save a file as root
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
 " Quit
 map <silent> <leader>q :qa!<CR>
 
@@ -203,8 +206,5 @@ map <leader><F2> :colorscheme <C-z>
 map <leader><F3> :RandomColorScheme<CR>
 map <F6> :PrevColorScheme<CR>
 map <F7> :NextColorScheme<CR>
-
-" Save a file as root
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 highlight LineNr ctermfg=green
