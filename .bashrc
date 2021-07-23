@@ -165,7 +165,7 @@ qterms() {
 # Launch a web search from a terminal
 #   e.g. SEARCHSITE="https://ddg.gg" websearch metabolic pathways
 websearch() {
-  [[ $# == 0 ]] && links $SEARCHSITE || links "$SEARCHSITE?q=$(qterms $@)"
+  [[ $# -eq 0 ]] && links $SEARCHSITE || links "$SEARCHSITE?q=$(qterms $@)"
 }
 
 # DuckDuckGo search
@@ -255,7 +255,7 @@ repeatstr() {
 #
 # Solution: https://unix.stackexchange.com/a/47210/
 reindent() {
-  if [[ $# > 2 ]]; then
+  if [[ $# -gt 2 ]]; then
     f=$(mktemp)
     cat $3 | reindent $1 $2 > $f && mv $f $3
   else
