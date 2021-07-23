@@ -224,9 +224,24 @@ json() {
   cat $1 | jq .
 }
 
-# Reindent a file, e.g. reindent 2 4 index.js
+# Repeat a string "n" times e.g. repeatstr abc 3
+#
+# Solution: https://stackoverflow.com/a/5349842/
+repeatstr() {
+  printf "%.0s$1" $(seq 1 $2)
+}
+
+# Reindent file that uses spaces
+#   e.g. reindent 2 4 index.html
+#   e.g. cat index.html | reindent 2 4
+#
+# Solution: https://unix.stackexchange.com/a/47210/
 reindent() {
-  vim -e "+set noet | retab! $1 | set et ts=$2 | retab | wq" $3
+  if [[ $# > 2 ]]; then
+    cat $3 | reindent $1 $2 > tmpfile && mv tmpfile $3
+  else
+    sed "h;s/[^ ].*//;s/$(repeatstr ' ' $1)/$(repeatstr ' ' $2)/g;G;s/\n *//"
+  fi
 }
 
 # Get repository for NPM package
