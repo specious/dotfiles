@@ -162,9 +162,22 @@ qterms() {
   IFS=$t
 }
 
+# Launch a web search from a terminal
+#   e.g. SEARCHSITE="https://ddg.gg" websearch metabolic pathways
+websearch() {
+  [[ $# == 0 ]] && links $SEARCHSITE || links "$SEARCHSITE?q=$(qterms $@)"
+}
+
 # DuckDuckGo search
 ddg() {
-  [[ $# == 0 ]] && links https://lite.duckduckgo.com/lite/ || links "https://lite.duckduckgo.com/lite/?q=$(qterms $@)"
+  SEARCHSITE=https://lite.duckduckgo.com/lite/
+  websearch $@
+}
+
+# Google search
+gg() {
+  SEARCHSITE=https://www.google.com/search
+  websearch $@
 }
 
 # DuckDuckGo query link
@@ -173,18 +186,23 @@ ddgl() {
 }
 
 # Google query link
-gg() {
+ggl() {
   echo "https://www.google.com/search?q=$(qterms $@)"
 }
 
 # Google image search query link
-ggi() {
-  echo "$(gg $@)&tbm=isch"
+ggil() {
+  echo "$(ggl $@)&tbm=isch"
 }
 
 # Open DuckDuckGo search in default browser
-dggo() {
+ddgo() {
   www `ddgl $@`
+}
+
+# Open Google search in default browser
+ggo() {
+  www `ggl $@`
 }
 
 # Shorten URL with is.gd
