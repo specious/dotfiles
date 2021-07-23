@@ -15,6 +15,10 @@ My custom prompt with git integration is available for:
 
 Some parts may be specific to the Linux system I use.
 
+## .zshrc
+
+These are configuration options for [zsh](https://en.wikipedia.org/wiki/Z_shell), which are in addition to [oh-my-zsh](https://ohmyz.sh/) with my [custome prompt](https://github.com/specious/bender) and customizations that pertain specifically to my local system.
+
 ## .vimrc
 
 Vim is currently my favorite editor. Every line in my .vimrc is intentional.
