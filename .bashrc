@@ -238,7 +238,8 @@ repeatstr() {
 # Solution: https://unix.stackexchange.com/a/47210/
 reindent() {
   if [[ $# > 2 ]]; then
-    cat $3 | reindent $1 $2 > tmpfile && mv tmpfile $3
+    f=$(mktemp)
+    cat $3 | reindent $1 $2 > $f && mv $f $3
   else
     sed "h;s/[^ ].*//;s/$(repeatstr ' ' $1)/$(repeatstr ' ' $2)/g;G;s/\n *//"
   fi
