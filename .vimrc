@@ -164,9 +164,6 @@ map <leader>, :s/^ //<CR>
 " Hot-reload code in connected Clojure REPL
 au Filetype clojure nmap <C-c><C-k> :Require<CR>
 
-" Set filetype for uncommon extensions
-au BufRead,BufNewFile *.boot set filetype=clojure
-
 " Toggle paste mode
 map <leader><Space>p :setlocal paste! paste?<CR>
 
