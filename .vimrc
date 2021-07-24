@@ -132,9 +132,9 @@ endfun
 
 nnoremap <leader>j :call JoinSpaceless()<CR>
 
-" Insert (and edit) a new empty line before or after current line
-map <leader><CR> O<Esc>
-map <CR> o<Esc>
+" New empty line before or after the current line (uses vim-unimpaired)
+map <leader><CR> [<space>
+map <CR> ]<space>
 
 " Insert single character
 :nnoremap <leader>i i_<Esc>r
