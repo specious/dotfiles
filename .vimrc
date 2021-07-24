@@ -62,6 +62,7 @@ set nu                              " Display line numbers
 set hls                             " Highlight search matches
 set noincsearch                     " Turn off incremental search
 set visualbell
+set shortmess+=I                    " Disable vim intro message
 
 let mapleader="\<Space>"
 let maplocalleader=","
