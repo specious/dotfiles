@@ -154,9 +154,7 @@ map <leader>O O<ESC>j
 :nnoremap <leader>i i_<Esc>r
 
 " Jump to end of pasted text
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
+noremap <silent> p p`]
 
 " Clear search highlighting
 nnoremap <C-c> :noh<CR><C-c>
