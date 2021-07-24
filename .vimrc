@@ -100,7 +100,7 @@ nnoremap <leader>yy "+yy
 " Paste from clipboard
 noremap <leader>p "+p
 
-" Show/hide tabs
+" Show/hide tab characters
 map <leader>tt :set listchars+=tab:>-<CR>
 map <leader>TT :set listchars-=tab:>-<CR>
 
@@ -115,6 +115,9 @@ if bufwinnr(1)
   map = <C-W>+
   map - <C-W>-
 endif
+
+" Leave only the current window (close all others)
+noremap <leader>o :only<CR>
 
 " Join lines and restore cursor location (J)
 nnoremap J mjJ`j
