@@ -5,35 +5,35 @@ set undodir=~/.vim/undo
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'lambdalisue/suda.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'terryma/vim-expand-region'
-Plugin 'rstacruz/vim-xtract'
-Plugin 'tpope/vim-repeat'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-commentary'
-Plugin 'suy/vim-context-commentstring'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-speeddating'
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'tomtom/tlib_vim'              " Required by vim-snipmate
-Plugin 'marcweber/vim-addon-mw-utils' " Required by vim-snipmate
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-fugitive'
-Plugin 'jreybert/vimagit'
-Plugin 'ervandew/ag'
-Plugin 'vim-airline/vim-airline'
+Plugin 'VundleVim/Vundle.vim'             " Plugin manager
+Plugin 'lambdalisue/suda.vim'             " Save/load with root permission
+Plugin 'scrooloose/nerdtree'              " File browser side panel
+Plugin 'ctrlpvim/ctrlp.vim'               " Quick file/buffer finder
+Plugin 'tpope/vim-unimpaired'             " Lots of useful shortcuts
+Plugin 'terryma/vim-expand-region'        " Quickly expand selected region
+Plugin 'rstacruz/vim-xtract'              " Extract selection to new file
+Plugin 'tpope/vim-repeat'                 " Enhanced 'repeat last action'
+Plugin 'sheerun/vim-polyglot'             " Programming language support
+Plugin 'tpope/vim-commentary'             " Comment/uncomment code
+Plugin 'suy/vim-context-commentstring'    " Detect correct language for comments
+Plugin 'tpope/vim-endwise'                " Automatically close blocks
+Plugin 'tpope/vim-surround'               " Quickly change surrounding [] () {} ''
+Plugin 'tpope/vim-speeddating'            " Quickly change dates
+Plugin 'AndrewRadev/switch.vim'           " Quickly toggle booleans
+Plugin 'tomtom/tlib_vim'                  " ( Required by vim-snipmate )
+Plugin 'marcweber/vim-addon-mw-utils'     " ( Required by vim-snipmate )
+Plugin 'garbas/vim-snipmate'              " Expand snippets
+Plugin 'honza/vim-snippets'               " Extra snippets
+Plugin 'tpope/vim-fugitive'               " Use git from vim
+Plugin 'jreybert/vimagit'                 " Use git from vim
+Plugin 'ervandew/ag'                      " Search in files
+Plugin 'vim-airline/vim-airline'          " Fancy status line
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'ryanoasis/vim-devicons'       " Must load last
+Plugin 'ryanoasis/vim-devicons'           " Fancy icons (must load last)
 call vundle#end()
 
 " Enable loading of file type specific plugins and indent rules
