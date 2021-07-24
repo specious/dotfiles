@@ -6,6 +6,7 @@ set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'lambdalisue/suda.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-unimpaired'
@@ -19,8 +20,8 @@ Plugin 'tpope/vim-endwise'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-speeddating'
 Plugin 'AndrewRadev/switch.vim'
-Plugin 'tomtom/tlib_vim'              " Required by garbas/vim-snipmate
-Plugin 'marcweber/vim-addon-mw-utils' " Required by garbas/vim-snipmate
+Plugin 'tomtom/tlib_vim'              " Required by vim-snipmate
+Plugin 'marcweber/vim-addon-mw-utils' " Required by vim-snipmate
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'guns/vim-sexp'
@@ -37,6 +38,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'ryanoasis/vim-devicons'       " Must load last
 call vundle#end()
 
 " Enable loading of file type specific plugins and indent rules
@@ -87,7 +89,7 @@ map <F5> :RainbowParenthesesToggleAll<CR>
 " Quick save
 map <leader>w :w<CR>
 
-" Save a file as root
+" Save a file as root (doesn't work in neovim)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " Quit
@@ -194,8 +196,13 @@ map <silent> <leader>rr :!./%<CR>
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
-let g:airline_left_sep = '»'
-au VimEnter * AirlineTheme lucius
+au VimEnter * AirlineTheme murmur
+
+" Enable devicons in the UI
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
 
 " Switch color scheme (show name after switching)
 map <leader><F2> :colorscheme <C-z>
