@@ -106,8 +106,7 @@ vnoremap <leader>y  "+y
 nnoremap <leader>yy "+yy
 
 " Paste from clipboard
-nnoremap <leader>p "+p
-vnoremap <leader>p "+p
+noremap <leader>p "+p
 
 " Show/hide tabs
 map <leader>tt :set listchars+=tab:>-<CR>
