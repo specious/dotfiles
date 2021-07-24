@@ -40,28 +40,28 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
-set binary
-set noeol
-set expandtab
-set tabstop=2
+set binary                          " Don't quietly change charaters in a file
+set noeol                           " Don't automatially add an EOL at the end of the file
+set expandtab                       " Use spaces to indent
+set tabstop=2                       " How many spaces a tab character equals
+set shiftwidth=2                    " How many spaces to shift by when indenting
 set list listchars=tab:\ \ ,trail:∙ " Show trailing spaces (by default)
 set listchars+=tab:>-               " Show tabs (until turned off)
-set shiftwidth=2
 set backspace=indent,eol,start      " Conventional backspace behavior
 set display=lastline                " Do not hide contents of long lines
-set undoreload=0
-set wildmenu
-set wildmode=longest:full,full
+set undoreload=0                    " Clear undo history when reloading a file
+set wildmenu                        " Enhanced command line completion
+set wildmode=longest:full,full      " Command line completion behavior
 set wildignore+=.git,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.sw?
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
-set wildcharm=<C-z>                 " Trigger tab completion via <C-z>
+set wildcharm=<C-z>                 " Trigger tab completion via <C-z> inside a macro
 set nu                              " Display line numbers
 set hls                             " Highlight search matches
 set noincsearch                     " Turn off incremental search
-set visualbell
+set visualbell                      " Use visual bell instead of beeping
 set shortmess+=I                    " Disable vim intro message
 
 let mapleader="\<Space>"
