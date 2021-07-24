@@ -24,12 +24,7 @@ Plugin 'tomtom/tlib_vim'              " Required by vim-snipmate
 Plugin 'marcweber/vim-addon-mw-utils' " Required by vim-snipmate
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'kovisoft/paredit'
 Plugin 'tpope/vim-surround'
-Plugin 'eapache/rainbow_parentheses.vim'
-Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jreybert/vimagit'
 Plugin 'vim-airline/vim-airline'
@@ -82,9 +77,6 @@ map <F3> :set invrelativenumber<CR>
 
 " Toggle line numbers
 map <F4> :set invnumber!<CR>
-
-" Toggle rainbow parentheses
-map <F5> :RainbowParenthesesToggleAll<CR>
 
 " Quick save
 map <leader>w :w<CR>
