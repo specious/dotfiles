@@ -113,9 +113,14 @@ map <C-k> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 
+" Check if window has another one above or below it
+fun! WinHasVNeighbor()
+  return winnr('j') != winnr() || winnr('k') != winnr()
+endfun
+
 " Quick window resizing
-noremap <expr> = winnr('$') > 1 ? '<C-W>+' : ''
-noremap <expr> - winnr('$') > 1 ? '<C-W>-' : ''
+noremap <expr> = WinHasVNeighbor() ? '<C-W>+' : ''
+noremap <expr> - WinHasVNeighbor() ? '<C-W>-' : ''
 
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
