@@ -126,13 +126,13 @@ inoremap <silent> <C-c> <Esc>`^
 " Join lines and restore cursor location (J)
 nnoremap J mjJ`j
 
-" Like gJ, but always remove spaces ( http://vi.stackexchange.com/a/440 )
+" Enhanced gJ that always removes spaces ( http://vi.stackexchange.com/a/440 )
 fun! JoinSpaceless()
   execute 'normal gJ'
 
-  " Character under cursor is whitespace?
+  " If the character under the cursor a whitespace...
   if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
-    " When remove it!
+    " Remove it
     execute 'normal dw'
   endif
 endfun
