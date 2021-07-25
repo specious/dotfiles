@@ -120,6 +120,10 @@ endif
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
 
+" Prevent cursor from jumping back one space when leaving insert mode
+inoremap <silent> <Esc> <Esc>`^
+inoremap <silent> <C-c> <Esc>`^
+
 " Join lines and restore cursor location (J)
 nnoremap J mjJ`j
 
