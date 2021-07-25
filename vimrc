@@ -41,7 +41,6 @@ filetype plugin indent on
 
 syntax on
 set binary                          " Don't quietly change charaters in a file
-set noeol                           " Don't automatially add an EOL at the end of the file
 set expandtab                       " Use spaces to indent
 set tabstop=2                       " How many spaces a tab character equals
 set shiftwidth=2                    " How many spaces to shift by when indenting
