@@ -202,4 +202,9 @@ map <F7> :NextColorScheme<CR>:colorscheme<CR>
 " Default color scheme
 colorscheme torte
 
+" Line number color
 highlight LineNr ctermfg=green
+
+" Different color line numbers in insert mode
+autocmd InsertEnter * hi LineNr ctermfg=darkgreen
+autocmd InsertLeave * hi LineNr ctermfg=green
