@@ -113,11 +113,9 @@ map <C-k> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 
-" Easy window resizing (+,-)
-if bufwinnr(1)
-  map = <C-W>+
-  map - <C-W>-
-endif
+" Quick window resizing
+noremap <expr> = winnr('$') > 1 ? '<C-W>+' : ''
+noremap <expr> - winnr('$') > 1 ? '<C-W>-' : ''
 
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
