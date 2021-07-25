@@ -54,7 +54,6 @@ set wildmenu                        " Enhanced command line completion
 set wildmode=longest:full,full      " Command line completion behavior
 set wildignore+=.git,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-set wildignore+=*.sw?
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
 set wildcharm=<C-z>                 " Trigger tab completion via <C-z> inside a macro
@@ -165,9 +164,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " Shift text left by one space
 map <leader>, :s/^ //<CR>
-
-" Hot-reload code in connected Clojure REPL
-au Filetype clojure nmap <C-c><C-k> :Require<CR>
 
 " Toggle paste mode
 map <leader><Space>p :setlocal paste! paste?<CR>
