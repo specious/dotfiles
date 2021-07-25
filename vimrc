@@ -104,6 +104,9 @@ noremap <leader>p "+p
 map <leader>tt :set listchars+=tab:>-<CR>
 map <leader>TT :set listchars-=tab:>-<CR>
 
+" Split window and switch to the newly created one
+map <leader>s <C-w>s<C-w><C-w>
+
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -169,7 +172,7 @@ map <leader>, :s/^ //<CR>
 map <leader><Space>p :setlocal paste! paste?<CR>
 
 " Instrumental incantations
-map <leader>ss :exec 'source ~/.vimrc'<CR>
+map <leader>bs :exec 'source ~/.vimrc'<CR>
 map <silent> <leader>bi :PluginInstall<CR>
 map <silent> <leader>m :NERDTreeToggle<CR>
 map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
