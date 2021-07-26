@@ -59,8 +59,8 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
 set wildcharm=<C-z>                 " Trigger tab completion via <C-z> inside a macro
-set nu                              " Display line numbers
-set hls                             " Highlight search matches
+set number                          " Show line numbers
+set hlsearch                        " Highlight search matches
 set incsearch                       " Highlight search matches as you type
 set visualbell                      " Use visual bell instead of beeping
 set shortmess+=I                    " Disable vim intro message
