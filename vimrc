@@ -152,6 +152,18 @@ map <leader>, :s/^ //<CR>
 nnoremap <leader>a :SidewaysLeft<cr>
 nnoremap <leader>d :SidewaysRight<cr>
 
+" Make list items (arguments) a kind of text object
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
+" Insert new list items
+nmap <leader>li <Plug>SidewaysArgumentInsertBefore
+nmap <leader>la <Plug>SidewaysArgumentAppendAfter
+nmap <leader>lI <Plug>SidewaysArgumentInsertFirst
+nmap <leader>lA <Plug>SidewaysArgumentAppendLast
+
 " Toggle paste mode
 map <leader><Space>p :setlocal paste! paste?<CR>
 
