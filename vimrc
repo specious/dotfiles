@@ -23,7 +23,7 @@ Plugin 'AndrewRadev/switch.vim'           " Quickly toggle booleans
 Plugin 'tomtom/tlib_vim'                  " ( Required by vim-snipmate )
 Plugin 'marcweber/vim-addon-mw-utils'     " ( Required by vim-snipmate )
 Plugin 'garbas/vim-snipmate'              " Expand snippets
-Plugin 'honza/vim-snippets'               " Extra snippets
+Plugin 'honza/vim-snippets'               " Snippet collection
 Plugin 'tpope/vim-fugitive'               " Use git from vim
 Plugin 'jreybert/vimagit'                 " Use git from vim
 Plugin 'ervandew/ag'                      " Search in files
@@ -92,13 +92,6 @@ map <leader>e :e<CR>
 " Display full path of current file
 map <silent> <leader>g :echo expand("%:p")<CR>
 
-" Copy to clipboard
-vnoremap <leader>y  "+y
-nnoremap <leader>yy "+yy
-
-" Paste from clipboard
-noremap <leader>p "+p
-
 " Show/hide tab characters
 map <leader>tt :set listchars+=tab:>-<CR>
 map <leader>TT :set listchars-=tab:>-<CR>
@@ -151,27 +144,34 @@ map <CR> ]<space>
 " Insert single character
 :nnoremap <leader>i i_<Esc>r
 
-" Jump to end of pasted text
-noremap <silent> p p`]
-
-" Clear search highlighting
-nnoremap <C-c> :noh<CR><C-c>
-
-" Replace highlighted search results
-map <leader>R :%s///g<left><left>
-
-" Select text most recently edited or pasted
-nnoremap gV `[v`]
-
-" Expand regions (terryma/vim-expand-region)
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " Shift text left by one space
 map <leader>, :s/^ //<CR>
 
 " Toggle paste mode
 map <leader><Space>p :setlocal paste! paste?<CR>
+
+" Copy to clipboard
+vnoremap <leader>y  "+y
+nnoremap <leader>yy "+yy
+
+" Paste from clipboard
+noremap <leader>p "+p
+
+" Select text most recently edited or pasted
+nnoremap gV `[v`]
+
+" Jump to end of pasted text
+noremap <silent> p p`]
+
+" Replace highlighted search results
+map <leader>R :%s///g<left><left>
+
+" Clear search highlighting
+nnoremap <C-c> :noh<CR><C-c>
+
+" Expand regions (terryma/vim-expand-region)
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 " Instrumental incantations
 map <leader>bs :exec 'source ~/.vimrc'<CR>
