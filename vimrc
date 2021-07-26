@@ -9,7 +9,7 @@ Plugin 'VundleVim/Vundle.vim'             " Plugin manager
 Plugin 'lambdalisue/suda.vim'             " Save/load with root permission
 Plugin 'scrooloose/nerdtree'              " File browser side panel
 Plugin 'ctrlpvim/ctrlp.vim'               " Quick file/buffer finder
-Plugin 'justinmk/vim-sneak'               " Jump around the content
+Plugin 'justinmk/vim-sneak'               " Jump around by searching two characters
 Plugin 'tpope/vim-unimpaired'             " Lots of useful shortcuts
 Plugin 'terryma/vim-expand-region'        " Quickly expand selected region
 Plugin 'rstacruz/vim-xtract'              " Extract selection to new file
@@ -60,7 +60,7 @@ set wildignore+=node_modules,bower_components,elm-stuff
 set wildcharm=<C-z>                 " Trigger tab completion via <C-z> inside a macro
 set nu                              " Display line numbers
 set hls                             " Highlight search matches
-set noincsearch                     " Turn off incremental search
+set incsearch                       " Highlight search matches as you type
 set visualbell                      " Use visual bell instead of beeping
 set shortmess+=I                    " Disable vim intro message
 
