@@ -9,6 +9,7 @@ Plugin 'VundleVim/Vundle.vim'             " Plugin manager
 Plugin 'lambdalisue/suda.vim'             " Save/load with root permission
 Plugin 'scrooloose/nerdtree'              " File browser side panel
 Plugin 'ctrlpvim/ctrlp.vim'               " Quick file/buffer finder
+Plugin 'justinmk/vim-sneak'               " Jump around the content
 Plugin 'tpope/vim-unimpaired'             " Lots of useful shortcuts
 Plugin 'terryma/vim-expand-region'        " Quickly expand selected region
 Plugin 'rstacruz/vim-xtract'              " Extract selection to new file
