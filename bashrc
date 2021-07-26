@@ -140,7 +140,7 @@ urlsafe() {
   done
 }
 
-# Make text URL-safe, preserving "quoted terms"
+# Make a query URL-safe, preserving "quoted terms"
 urlsafeq() {
   for a in "$@"; do
     case $a in
