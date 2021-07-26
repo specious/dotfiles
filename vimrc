@@ -93,8 +93,8 @@ map <leader>e :e<CR>
 map <silent> <leader>g :echo expand("%:p")<CR>
 
 " Show/hide tab characters
-map <leader>tt :set listchars+=tab:>-<CR>
-map <leader>TT :set listchars-=tab:>-<CR>
+map <leader>tabon  :set listchars+=tab:>-<CR>
+map <leader>taboff :set listchars-=tab:>-<CR>
 
 " Split window and switch to the newly created one
 map <leader>s <C-w>s<C-w><C-w>
