@@ -20,6 +20,7 @@ Plugin 'tpope/vim-endwise'                " Automatically close blocks
 Plugin 'tpope/vim-surround'               " Quickly change surrounding [] () {} ''
 Plugin 'tpope/vim-speeddating'            " Quickly change dates
 Plugin 'AndrewRadev/switch.vim'           " Quickly toggle booleans
+Plugin 'AndrewRadev/sideways.vim'         " Shift items in a list
 Plugin 'tomtom/tlib_vim'                  " ( Required by vim-snipmate )
 Plugin 'marcweber/vim-addon-mw-utils'     " ( Required by vim-snipmate )
 Plugin 'garbas/vim-snipmate'              " Expand snippets
@@ -146,6 +147,10 @@ map <CR> ]<space>
 
 " Shift text left by one space
 map <leader>, :s/^ //<CR>
+
+" Shift items in a list using sideways.vim
+nnoremap <leader>a :SidewaysLeft<cr>
+nnoremap <leader>d :SidewaysRight<cr>
 
 " Toggle paste mode
 map <leader><Space>p :setlocal paste! paste?<CR>
