@@ -23,7 +23,7 @@ bindsym $mod+Return exec sakura
 bindsym $mod+q kill
 
 # Application launcher
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+d exec "rofi -modi drun,window,run -show drun -theme blue -font 'Bitstream Vera Sans Bold 22'"
 
 # Shift focus
 bindsym $mod+j focus left
