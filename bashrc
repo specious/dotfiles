@@ -278,6 +278,11 @@ screentitle() {
   echo -e '\033k'$1'\033\\'
 }
 
+# Execute a process in each window inside the current GNU Screen session
+saexec() {
+  screen -X at '#' exec $@
+}
+
 # Play youtube in the framebuffer console
 yplay() {
   youtube-dl -o - $1 | mplayer -vo fbdev2 -
@@ -300,7 +305,7 @@ alias tree="tree -C"
 alias ns="screen -S"
 alias sx="screen -x"
 alias sls="screen -ls"
-alias news="screen zsh"
+alias tt="screen"
 alias pstree="pstree -h"
 alias dush="du -sh .[!.]* *"
 alias to="rlwrap trans -t"
