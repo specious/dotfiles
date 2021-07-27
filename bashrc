@@ -278,9 +278,18 @@ screentitle() {
   echo -e '\033k'$1'\033\\'
 }
 
-# Execute a process in each window inside the current GNU Screen session
+# Execute a process in each window inside a GNU Screen session
+#
+# saexec <session> <executable> [<args>]
+#
+# Inside current session:
+#   saexec <executable> [<args>]
 saexec() {
-  screen -X at '#' exec $@
+  if [ -n "$STY" ]; then
+    screen -X at '#' exec $@
+  else
+    screen -S $1 -X at '#' exec "${@:2}"
+  fi
 }
 
 # Play youtube in the framebuffer console
