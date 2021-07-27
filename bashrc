@@ -273,8 +273,8 @@ nurl() {
   npm v $1 homepage
 }
 
-# Set title in GNU screen
-screentitle() {
+# Set title in GNU Screen
+stitle() {
   echo -e '\033k'$1'\033\\'
 }
 
