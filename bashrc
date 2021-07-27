@@ -278,6 +278,13 @@ screentitle() {
   echo -e '\033k'$1'\033\\'
 }
 
+# Set environment variable in current GNU Screen session
+#
+# (it will only take effect when new windows are opened)
+ssetenv() {
+  screen -X setenv $1 $2
+}
+
 # Execute a process in each window inside a GNU Screen session
 #
 # saexec <session> <executable> [<args>]
