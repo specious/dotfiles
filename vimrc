@@ -55,7 +55,7 @@ set undoreload=0                    " Clear undo history when reloading a file
 set wildmenu                        " Enhanced command line completion
 set wildmode=longest:full,full      " Command line completion behavior
 set wildignore+=.git,.svn
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp
 set wildignore+=.DS_Store
 set wildignore+=node_modules,bower_components,elm-stuff
 set wildcharm=<C-z>                 " Trigger tab completion via <C-z> inside a macro
@@ -119,6 +119,10 @@ noremap <expr> - WinHasVNeighbor() ? '<C-W>-' : ''
 
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
+
+" Cycle buffers
+noremap <C-Left>  :bprev<CR>
+noremap <C-Right> :bnext<CR>
 
 " Prevent cursor from jumping back one space when leaving insert mode
 inoremap <silent> <Esc> <Esc>`^
