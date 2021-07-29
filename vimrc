@@ -142,7 +142,7 @@ fun! CloseEmptyBuffer(timer)
 endfun
 
 " Close unmodified empty buffer when opening help
-autocmd filetype help call timer_start(1, 'CloseEmptyBuffer')
+autocmd filetype help call timer_start(0, 'CloseEmptyBuffer')
 
 " Prevent cursor from jumping back one space when leaving insert mode
 inoremap <silent> <Esc> <Esc>`^
