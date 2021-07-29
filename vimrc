@@ -64,6 +64,8 @@ set hlsearch                        " Highlight search matches
 set incsearch                       " Highlight search matches as you type
 set visualbell                      " Use visual bell instead of beeping
 set shortmess+=I                    " Disable vim intro message
+set helpheight=999                  " Expand help window to maximum height
+set lazyredraw                      " Don't redraw screen while executing macros
 
 let mapleader="\<Space>"
 let maplocalleader=","
