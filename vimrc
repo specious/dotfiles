@@ -119,6 +119,9 @@ endfun
 noremap <expr> = WinHasVNeighbor() ? '<C-W>+' : ''
 noremap <expr> - WinHasVNeighbor() ? '<C-W>-' : ''
 
+" Close current window
+noremap <leader>c <C-w>c
+
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
 
