@@ -129,6 +129,21 @@ noremap <leader>o :only<CR>
 noremap <C-Left>  :bprev<CR>
 noremap <C-Right> :bnext<CR>
 
+" Is a buffer an unmodified empty buffer
+fun! IsBufferEmptyAndUnmodified(which)
+  return bufname(a:which) == '' && !getbufvar(a:which, "&modified")
+endfun
+
+" Close the last window if it contains an unmodified empty buffer
+fun! CloseEmptyBuffer(timer)
+  if IsBufferEmptyAndUnmodified('#')
+    +close
+  endif
+endfun
+
+" Close unmodified empty buffer when opening help
+autocmd filetype help call timer_start(1, 'CloseEmptyBuffer')
+
 " Prevent cursor from jumping back one space when leaving insert mode
 inoremap <silent> <Esc> <Esc>`^
 inoremap <silent> <C-c> <Esc>`^
@@ -213,7 +228,7 @@ map <silent> <leader>rr :!./%<CR>
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
-au VimEnter * AirlineTheme murmur
+autocmd VimEnter * AirlineTheme murmur
 
 " Enable devicons in the UI
 let g:webdevicons_enable_ctrlp = 1
