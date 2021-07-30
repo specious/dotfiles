@@ -28,6 +28,14 @@ Resources I found helpful:
 - [Vim annoyances](https://sanctum.geek.nz/arabesque/vim-annoyances/)
 - [Introduction to managing windows and buffers](https://thevaluable.dev/vim-intermediate/)
 
+## screenrc
+
+Put this in your home folder as `~/.screenrc`.
+
+Resources I found helpful:
+
+- [Quick reference](https://gist.github.com/jctosta/af918e1618682638aa82)
+
 ## i3wm .config
 
 Resources I found helpful:
