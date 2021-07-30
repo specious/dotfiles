@@ -34,7 +34,7 @@ Put this in your home folder as `~/.screenrc`.
 
 Resources I found helpful:
 
-- [Quick reference](https://gist.github.com/jctosta/af918e1618682638aa82)
+- [Quick reference](https://gist.github.com/kapitanluffy/656f3eb879b408b1d8a7fee0b6952216)
 
 ## i3wm .config
 
