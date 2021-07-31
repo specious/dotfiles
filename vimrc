@@ -2,6 +2,9 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
+" Unload any triggers previously set by this .vimrc
+augroup vimrc | au! | augroup END
+
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -142,7 +145,10 @@ fun! CloseEmptyBuffer(timer)
 endfun
 
 " Close unmodified empty buffer when opening help
-autocmd filetype help call timer_start(0, 'CloseEmptyBuffer')
+augroup fixhelp
+  au!
+  autocmd filetype help call timer_start(0, 'CloseEmptyBuffer')
+augroup end
 
 " Prevent cursor from jumping back one space when leaving insert mode
 inoremap <silent> <Esc> <Esc>`^
@@ -228,7 +234,7 @@ map <silent> <leader>rr :!./%<CR>
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
-autocmd VimEnter * AirlineTheme murmur
+autocmd vimrc VimEnter * AirlineTheme murmur
 
 " Enable devicons in the UI
 let g:webdevicons_enable_ctrlp = 1
@@ -249,5 +255,5 @@ colorscheme torte
 highlight LineNr ctermfg=green
 
 " Different color line numbers in insert mode
-autocmd InsertEnter * hi LineNr ctermfg=darkgreen
-autocmd InsertLeave * hi LineNr ctermfg=green
+autocmd vimrc InsertEnter * hi LineNr ctermfg=darkgreen
+autocmd vimrc InsertLeave * hi LineNr ctermfg=green
