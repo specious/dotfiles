@@ -137,17 +137,18 @@ fun! IsBufferEmptyAndUnmodified(which)
   return bufname(a:which) == '' && !getbufvar(a:which, "&modified")
 endfun
 
-" Close the last window if it contains an unmodified empty buffer
-fun! CloseEmptyBuffer(timer)
-  if IsBufferEmptyAndUnmodified('#')
+" Close the other window if it's showing an untouched empty buffer while we're viewing help
+fun! CloseEmptyBufferWindow(timer)
+  if &filetype == "help" && getbufinfo('')[0].loaded && IsBufferEmptyAndUnmodified('#')
+    " Close the last window that had focus
     +close
   endif
 endfun
 
-" Close unmodified empty buffer when opening help
+" Set trigger to hide unmodified empty buffer when opening help
 augroup fixhelp
   au!
-  autocmd filetype help call timer_start(0, 'CloseEmptyBuffer')
+  autocmd BufNew *.txt call timer_start(0, 'CloseEmptyBufferWindow')
 augroup end
 
 " Prevent cursor from jumping back one space when leaving insert mode
