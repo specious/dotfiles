@@ -155,28 +155,15 @@ augroup end
 inoremap <silent> <Esc> <Esc>`^
 inoremap <silent> <C-c> <Esc>`^
 
-" Join lines and restore cursor location (J)
+" Join lines without moving the cursor
 nnoremap J mjJ`j
-
-" Enhanced gJ that always removes spaces ( http://vi.stackexchange.com/a/440 )
-fun! JoinSpaceless()
-  execute 'normal gJ'
-
-  " If the character under the cursor a whitespace...
-  if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
-    " Remove it
-    execute 'normal dw'
-  endif
-endfun
-
-nnoremap <leader>j :call JoinSpaceless()<CR>
 
 " New empty line before or after the current line (uses vim-unimpaired)
 map <leader><CR> [<space>
 map <CR> ]<space>
 
 " Insert single character
-:nnoremap <leader>i i_<Esc>r
+nnoremap <leader>i i_<Esc>r
 
 " Shift text left by one space
 map <leader>, :s/^ //<CR>
