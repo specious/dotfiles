@@ -158,6 +158,15 @@ inoremap <silent> <C-c> <Esc>`^
 " Join lines without moving the cursor
 nnoremap J mjJ`j
 
+" Tab that will advance to align with next word on the previous line
+fun! SuperTab() abort
+  let spaces = matchstr(getline(line('.')-1)[col('.')-1:], '^\s*')
+
+  return len(spaces) ? spaces : "\<tab>"
+endfun
+
+inoremap <expr> <C-t> SuperTab()
+
 " New empty line before or after the current line (uses vim-unimpaired)
 map <leader><CR> [<space>
 map <CR> ]<space>
