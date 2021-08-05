@@ -27,6 +27,7 @@ Resources I found helpful:
 
 - [Vim annoyances](https://sanctum.geek.nz/arabesque/vim-annoyances/)
 - [Introduction to managing windows and buffers](https://thevaluable.dev/vim-intermediate/)
+- [Buffers vs Tabs](https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/)
 
 ## screenrc
 

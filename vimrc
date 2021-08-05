@@ -46,7 +46,7 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
-set binary                          " Don't quietly change characters in a file
+set shortmess+=I                    " Disable vim intro message
 set expandtab                       " Use spaces to indent
 set tabstop=2                       " How many spaces a tab character equals
 set shiftwidth=2                    " How many spaces to shift by when indenting
@@ -66,9 +66,10 @@ set number                          " Show line numbers
 set hlsearch                        " Highlight search matches
 set incsearch                       " Highlight search matches as you type
 set visualbell                      " Use visual bell instead of beeping
-set shortmess+=I                    " Disable vim intro message
 set helpheight=999                  " Expand help window to maximum height
 set lazyredraw                      " Don't redraw screen while executing macros
+set hidden                          " Allow buffers with unsaved changes to be hidden
+set binary                          " Don't quietly change characters in a file
 
 let mapleader="\<Space>"
 let maplocalleader=","
