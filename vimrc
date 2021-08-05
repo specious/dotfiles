@@ -168,8 +168,8 @@ endfun
 inoremap <expr> <C-t> SuperTab()
 
 " New empty line before or after the current line (uses vim-unimpaired)
-map <leader><CR> [<space>
-map <CR> ]<space>
+map <CR> [<space>
+map <leader><CR> ]<space>
 
 " Insert single character
 nnoremap <leader>i i_<Esc>r
