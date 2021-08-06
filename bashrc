@@ -221,6 +221,11 @@ gitio() {
   curl -i http://git.io -F "url=${1}" -F "code=${2}"
 }
 
+# 'git stash' but keeping the working directory untouched
+gsave() {
+  git stash store $(git stash create) -m $@
+}
+
 # History of a file's size by revision, e.g. git-filehist yarn.lock
 git-filehist() {
   for rev in $(git rev-list HEAD -- $1); do
