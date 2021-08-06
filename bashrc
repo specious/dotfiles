@@ -343,6 +343,7 @@ alias ssl="openssl s_client -connect"
 alias jp2a="jp2a --colors"
 alias bitly="bitly-client"
 alias jmp="bitly-client --domain j.mp"
+alias fzp="fzf +s --tac"
 alias sorta='grep -o . | sort | tr -d "\n"' # sort string alphabetically, e.g. echo cbda | sorta
 alias stripcolor="sed -E 's/[[:cntrl:]]\[[0-9]{1,3}m//g'" # Source: https://stackoverflow.com/a/46262090/
 alias jp="json_pp | c" # cat data.json | jp
