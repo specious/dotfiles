@@ -47,6 +47,7 @@ filetype plugin indent on
 
 syntax on
 set shortmess+=I                    " Disable vim intro message
+set binary                          " Don't quietly change characters in a file
 set expandtab                       " Use spaces to indent
 set tabstop=2                       " How many spaces a tab character equals
 set shiftwidth=2                    " How many spaces to shift by when indenting
@@ -69,7 +70,6 @@ set visualbell                      " Use visual bell instead of beeping
 set helpheight=999                  " Expand help window to maximum height
 set lazyredraw                      " Don't redraw screen while executing macros
 set hidden                          " Allow buffers with unsaved changes to be hidden
-set binary                          " Don't quietly change characters in a file
 
 let mapleader="\<Space>"
 let maplocalleader=","
