@@ -13,7 +13,7 @@ default_border pixel
 # Toggle window decoration
 bindsym $mod+b border toggle
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Use mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # Launch a terminal
