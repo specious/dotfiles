@@ -46,8 +46,8 @@ Resources I found helpful:
 ## Also I use...
 
 Firefox add-ons:
-- [Markdown Viewer](https://github.com/simov/markdown-viewer)
 - [QR Code](https://addons.mozilla.org/en-US/firefox/addon/qr-code-address-bar/)
+- [URL Parameters Editor](https://addons.mozilla.org/en-US/firefox/addon/url-parameters-editor/)
 - [Pentadactyl](http://bug.5digits.org/pentadactyl/) (used to work with Firefox but is now availabe as a [Palemoon add-on](https://addons.palemoon.org/addon/pentadactyl-community/))
 
 ## Contributing
