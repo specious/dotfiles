@@ -22,9 +22,13 @@ Plugin 'sheerun/vim-polyglot'             " Programming language support
 Plugin 'tpope/vim-commentary'             " Comment/uncomment code
 Plugin 'suy/vim-context-commentstring'    " Detect correct language for comments
 Plugin 'tpope/vim-endwise'                " Automatically close blocks
+Plugin 'chaoren/vim-wordmotion'           " Better word motions
+Plugin 'wellle/targets.vim'               " Extended text objects for editing
+Plugin 'AndrewRadev/dsf.vim'              " Make function calls a text object
 Plugin 'tpope/vim-surround'               " Quickly change surrounding [] () {} ''
 Plugin 'tpope/vim-speeddating'            " Quickly change dates
 Plugin 'AndrewRadev/switch.vim'           " Quickly toggle booleans
+Plugin 'AndrewRadev/deleft.vim'           " Delete surrounding code structures
 Plugin 'AndrewRadev/sideways.vim'         " Shift items in a list
 Plugin 'tomtom/tlib_vim'                  " ( Required by vim-snipmate )
 Plugin 'marcweber/vim-addon-mw-utils'     " ( Required by vim-snipmate )

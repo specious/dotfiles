@@ -21,7 +21,7 @@ These are configuration options for [zsh](https://en.wikipedia.org/wiki/Z_shell)
 
 ## vimrc
 
-Vim is currently my favorite editor. Every line in my .vimrc is intentional.
+Vim is currently my main editor. Every line in my .vimrc is intentional. To easily install plugins I recommend a plugin manager such as [vundle](https://github.com/VundleVim/Vundle.vim).
 
 Resources I found helpful:
 
