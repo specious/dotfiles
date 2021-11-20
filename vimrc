@@ -5,46 +5,58 @@ set undodir=~/.vim/undo
 " Unload any triggers previously set by this .vimrc
 augroup vimrc | au! | augroup END
 
-set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'             " Plugin manager
-Plugin 'lambdalisue/suda.vim'             " Save/load with root permission
-Plugin 'scrooloose/nerdtree'              " File browser side panel
-Plugin 'ctrlpvim/ctrlp.vim'               " Quick file/buffer finder
-Plugin 'easymotion/vim-easymotion'        " Jump to content quickly
-Plugin 'justinmk/vim-sneak'               " Jump around by searching two characters
-Plugin 'tpope/vim-unimpaired'             " Lots of useful shortcuts
-Plugin 'terryma/vim-expand-region'        " Quickly expand selected region
-Plugin 'rstacruz/vim-xtract'              " Extract selection to new file
-Plugin 'tpope/vim-repeat'                 " Enhanced 'repeat last action'
-Plugin 'sheerun/vim-polyglot'             " Programming language support
-Plugin 'tpope/vim-commentary'             " Comment/uncomment code
-Plugin 'suy/vim-context-commentstring'    " Detect correct language for comments
-Plugin 'tpope/vim-endwise'                " Automatically close blocks
-Plugin 'chaoren/vim-wordmotion'           " Better word motions
-Plugin 'wellle/targets.vim'               " Extended text objects for editing
-Plugin 'AndrewRadev/dsf.vim'              " Make function calls a text object
-Plugin 'tpope/vim-surround'               " Quickly change surrounding [] () {} ''
-Plugin 'tpope/vim-speeddating'            " Quickly change dates
-Plugin 'AndrewRadev/switch.vim'           " Quickly toggle booleans
-Plugin 'AndrewRadev/deleft.vim'           " Delete surrounding code structures
-Plugin 'AndrewRadev/sideways.vim'         " Shift items in a list
-Plugin 'tomtom/tlib_vim'                  " ( Required by vim-snipmate )
-Plugin 'marcweber/vim-addon-mw-utils'     " ( Required by vim-snipmate )
-Plugin 'garbas/vim-snipmate'              " Expand snippets
-Plugin 'honza/vim-snippets'               " Snippet collection
-Plugin 'tpope/vim-fugitive'               " Use git from vim
-Plugin 'jreybert/vimagit'                 " Use git from vim
-Plugin 'ervandew/ag'                      " Search in files
-Plugin 'vim-airline/vim-airline'          " Fancy status line
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'ryanoasis/vim-devicons'           " Fancy icons (must load last)
-call vundle#end()
+" Drop backwards compatibility
+if &compatible
+  set nocp
+endif
+
+set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+
+call dein#begin('~/.vim/dein')
+call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+
+call dein#add('lambdalisue/suda.vim')            " Save/load with root permission
+call dein#add('scrooloose/nerdtree')             " File browser side panel
+call dein#add('ctrlpvim/ctrlp.vim')              " Quick file/buffer finder
+call dein#add('easymotion/vim-easymotion')       " Jump to content quickly
+call dein#add('justinmk/vim-sneak')              " Jump around by searching two characters
+call dein#add('tpope/vim-unimpaired')            " Lots of useful shortcuts
+call dein#add('terryma/vim-expand-region')       " Quickly expand selected region
+call dein#add('rstacruz/vim-xtract')             " Extract selection to new file
+call dein#add('tpope/vim-repeat')                " Enhanced 'repeat last action'
+call dein#add('sheerun/vim-polyglot')            " Programming language support
+call dein#add('tpope/vim-commentary')            " Comment/uncomment code
+call dein#add('suy/vim-context-commentstring')   " Detect correct language for comments
+call dein#add('tpope/vim-endwise')               " Automatically close blocks
+call dein#add('chaoren/vim-wordmotion')          " Better word motions
+call dein#add('wellle/targets.vim')              " Extended text objects for editing
+call dein#add('AndrewRadev/dsf.vim')             " Make function calls a text object
+call dein#add('tpope/vim-surround')              " Quickly change surrounding [] () {} ''
+call dein#add('tpope/vim-speeddating')           " Quickly change dates
+call dein#add('AndrewRadev/switch.vim')          " Quickly toggle booleans
+call dein#add('AndrewRadev/deleft.vim')          " Delete surrounding code structures
+call dein#add('AndrewRadev/sideways.vim')        " Shift items in a list
+call dein#add('tomtom/tlib_vim')                 " ( Required by vim-snipmate )
+call dein#add('marcweber/vim-addon-mw-utils')    " ( Required by vim-snipmate )
+call dein#add('garbas/vim-snipmate')             " Expand snippets
+call dein#add('honza/vim-snippets')              " Snippet collection
+call dein#add('tpope/vim-fugitive')              " Use git from vim
+call dein#add('jreybert/vimagit')                " Use git from vim
+call dein#add('ervandew/ag')                     " Search in files
+call dein#add('vim-airline/vim-airline')         " Fancy status line
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('tpope/vim-vividchalk')
+call dein#add('xolox/vim-misc')
+call dein#add('xolox/vim-colorscheme-switcher')
+call dein#add('ryanoasis/vim-devicons')          " Fancy icons (must load last)
+
+call dein#end()
 
 " Enable loading of file type specific plugins and indent rules
 filetype plugin indent on
