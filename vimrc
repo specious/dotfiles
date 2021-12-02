@@ -52,6 +52,7 @@ call dein#add('vim-airline/vim-airline')         " Fancy status line
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('tpope/vim-vividchalk')
+call dein#add('flazz/vim-colorschemes')
 call dein#add('xolox/vim-misc')
 call dein#add('xolox/vim-colorscheme-switcher')
 call dein#add('ryanoasis/vim-devicons')          " Fancy icons (must load last)
@@ -245,6 +246,9 @@ map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
 
+" Ensure C++ has // comments
+autocmd FileType cpp setlocal commentstring=//%s
+
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
@@ -263,7 +267,7 @@ map <F6> :PrevColorScheme<CR>:colorscheme<CR>
 map <F7> :NextColorScheme<CR>:colorscheme<CR>
 
 " Default color scheme
-colorscheme torte
+colorscheme toothpik
 
 " Line number color
 highlight LineNr ctermfg=green
