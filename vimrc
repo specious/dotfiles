@@ -47,7 +47,7 @@ call dein#add('garbas/vim-snipmate')             " Expand snippets
 call dein#add('honza/vim-snippets')              " Snippet collection
 call dein#add('tpope/vim-fugitive')              " Use git from vim
 call dein#add('jreybert/vimagit')                " Use git from vim
-call dein#add('ervandew/ag')                     " Search in files
+call dein#add('mileszs/ack.vim')                 " Search in files
 call dein#add('vim-airline/vim-airline')         " Fancy status line
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('altercation/vim-colors-solarized')
@@ -61,6 +61,11 @@ call dein#end()
 
 " Enable loading of file type specific plugins and indent rules
 filetype plugin indent on
+
+" Set 'ag' as the search utility
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 syntax on
 set shortmess+=I                    " Disable vim intro message
@@ -94,14 +99,11 @@ let maplocalleader=","
 " Quicker command line
 map <leader>; :
 
-" Toggle word wrapping
-map <F2> :set wrap!<CR>
+" Reload configuration
+map <leader>bs :source ~/.vimrc<CR>
 
-" Toggle relative line numbers
-map <F3> :set invrelativenumber<CR>
-
-" Toggle line numbers
-map <F4> :set invnumber!<CR>
+" Toggle file tree panel
+map <silent> <leader>m :NERDTreeToggle<CR>
 
 " Quick save
 map <leader>w :w<CR>
@@ -121,6 +123,15 @@ map <silent> <leader>g :echo expand("%:p")<CR>
 " Show/hide tab characters
 map <leader>tabon  :set listchars+=tab:>-<CR>
 map <leader>taboff :set listchars-=tab:>-<CR>
+
+" Toggle word wrapping
+map <F2> :set wrap!<CR>
+
+" Toggle relative line numbers
+map <F3> :set invrelativenumber<CR>
+
+" Toggle line numbers
+map <F4> :set invnumber!<CR>
 
 " Split window and switch to the newly created one
 map <leader>s <C-w>s<C-w><C-w>
@@ -149,6 +160,9 @@ noremap <leader>o :only<CR>
 " Cycle buffers
 noremap <C-Left>  :bprev<CR>
 noremap <C-Right> :bnext<CR>
+
+" Close current buffer
+noremap <leader>bb :bw<CR>
 
 " Is a buffer an unmodified empty buffer
 fun! IsBufferEmptyAndUnmodified(which)
@@ -233,18 +247,21 @@ map <leader>R :%s///g<left><left>
 " Clear search highlighting
 nnoremap <C-c> :noh<CR><C-c>
 
-" Expand regions (terryma/vim-expand-region)
+" Expand selected regions (terryma/vim-expand-region)
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" Instrumental incantations
-map <leader>bs :exec 'source ~/.vimrc'<CR>
-map <silent> <leader>bi :PluginInstall<CR>
-map <silent> <leader>m :NERDTreeToggle<CR>
-map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
+" Delete trailing whitespace (on every line)
+noremap <leader>tr :%s/\s\+$//e<CR>
+
+" Update plugins
+map <silent> <leader>bi :call dein#update()<CR>
 
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
+
+" Open current file in Firefox
+map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 
 " Ensure C++ has // comments
 autocmd FileType cpp setlocal commentstring=//%s
