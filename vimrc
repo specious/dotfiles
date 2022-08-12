@@ -185,7 +185,7 @@ endfun
 " Set trigger to hide unmodified empty buffer when opening help
 augroup fixhelp
   au!
-  autocmd BufNew *.txt call timer_start(0, 'CloseEmptyBufferWindow')
+  au BufNew *.txt call timer_start(0, 'CloseEmptyBufferWindow')
 augroup end
 
 " Prevent cursor from jumping back one space when leaving insert mode
@@ -262,9 +262,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " Delete trailing whitespace (on every line)
 noremap <leader>tr :%s/\s\+$//e<CR>
 
-" Update plugins
-map <silent> <leader>bi :call dein#update()<CR>
-
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
 
@@ -272,12 +269,12 @@ map <silent> <leader>rr :!./%<CR>
 map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 
 " Ensure C++ has // comments
-autocmd FileType cpp setlocal commentstring=//%s
+au FileType cpp setlocal commentstring=//%s
 
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
-autocmd vimrc VimEnter * AirlineTheme murmur
+au vimrc VimEnter * AirlineTheme murmur
 
 " Enable devicons in the UI
 let g:webdevicons_enable_ctrlp = 1
@@ -298,5 +295,8 @@ colorscheme sift
 highlight LineNr ctermfg=green
 
 " Different color line numbers in insert mode
-autocmd vimrc InsertEnter * hi LineNr ctermfg=darkgreen
-autocmd vimrc InsertLeave * hi LineNr ctermfg=green
+au vimrc InsertEnter * hi LineNr ctermfg=darkgreen
+au vimrc InsertLeave * hi LineNr ctermfg=green
+
+" Disable automatic enforcement of formatting rules when editing git commit messages
+au Filetype gitcommit setlocal formatoptions-=tl
