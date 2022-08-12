@@ -23,7 +23,7 @@ if !has('nvim')
 endif
 
 call dein#add('lambdalisue/suda.vim')            " Save/load with root permission
-call dein#add('scrooloose/nerdtree')             " File browser side panel
+call dein#add('preservim/nerdtree')             " File browser side panel
 call dein#add('ctrlpvim/ctrlp.vim')              " Quick file/buffer finder
 call dein#add('easymotion/vim-easymotion')       " Jump to content quickly
 call dein#add('justinmk/vim-sneak')              " Jump around by searching two characters
@@ -98,8 +98,8 @@ set hidden                          " Allow buffers with unsaved changes to be h
 let mapleader="\<Space>"
 let maplocalleader=","
 
-" Update plugins
-map <leader>modup :call dein#update()<CR>
+" User defined command to update plugins
+:command Modup :call dein#update()
 
 " Quicker command line
 map <leader>; :
