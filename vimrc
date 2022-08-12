@@ -10,10 +10,12 @@ if &compatible
   set nocp
 endif
 
-set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+let $DEIN_DIR = '~/.vim/dein'
 
-call dein#begin('~/.vim/dein')
-call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+set rtp+=$DEIN_DIR/repos/github.com/Shougo/dein.vim
+
+call dein#begin($DEIN_DIR)
+call dein#add($DEIN_DIR.'/repos/github.com/Shougo/dein.vim')
 
 if !has('nvim')
   call dein#add('roxma/nvim-yarp')
