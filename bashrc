@@ -95,7 +95,8 @@ pwdx() {
 # Start HTTP server
 pserv() {
   port=${1:-8888}
-  php -S "0.0.0.0:${port}"
+  root=${2:-./}
+  php -S "0.0.0.0:${port}" -t $root
 }
 
 # Start HTTP server and open in browser
@@ -221,9 +222,43 @@ gitio() {
   curl -i http://git.io -F "url=${1}" -F "code=${2}"
 }
 
-# 'git stash' but keeping the working directory untouched
+# Show current branch or commit ref
+gbb() {
+  git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD
+}
+
+# 'git stash' but keeping the working directory untouched (doesn't stash untracked files)
 gsave() {
-  git stash store $(git stash create) -m $@
+  # Print usage
+  [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
+
+  # Spaces must be in quotes
+  [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
+
+  git stash store $(git stash create $@) -m "On $(gbb): $@"
+
+  # Show the new entry
+  git --no-pager stash list -1
+}
+
+# 'git stash' but keeping the working directory untouched (stash includes untracked files)
+gsaveu() {
+  # Print usage
+  [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
+
+  # Spaces must be in quotes
+  [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
+
+  # Stash everything including untracked files
+  git stash --include-untracked --keep-index -m $@
+
+  # Restore working tree
+  git stash apply --quiet
+
+  echo
+
+  # Show the commits that make up the stash 
+  git --no-pager log stash@{0} --oneline -3
 }
 
 # History of a file's size by revision, e.g. git-filehist yarn.lock
@@ -244,7 +279,7 @@ gdbytes() {
 
 # Pretty print json
 json() {
-  cat $1 | jq .
+  jq < $1
 }
 
 # Repeat a string "n" times e.g. repeatstr abc 3
@@ -319,6 +354,7 @@ alias l.="ls -d .*"
 alias la="ls -a"
 alias ll="ls -l"
 alias lR="ls -R"
+alias lla="ls -la"
 alias llh="ls -lh"
 alias rmd="rmdir"
 alias lstree="ls -lR"
@@ -352,6 +388,7 @@ alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
 alias sfd="setfont -d"
 alias saver="xscreensaver-command -activate"
+alias nn="node"
 alias dos="dosbox-x -fs -nomenu"
 alias vplay="mplayer -vo fbdev2"
 alias cplay="mpv -vo caca"
@@ -361,39 +398,41 @@ alias iii="ping -c 1 8.8.8.8"
 
 alias gs="git status -s"
 alias gr="git remote"
-alias gb="git branch"
-alias gbb="git symbolic-ref -q --short HEAD || git describe --tags --exact-match"
+alias gb="git --no-pager branch"
+alias gstat="git show --stat --pretty=format:" # Show files changed in commit
 alias gl="git log"
 alias gls="git log --show-signature"
-alias gll="git log --oneline"
-alias glg="git log --oneline --graph"
-alias glt="git log --format=\"%C(yellow)%h%C(reset) %s\""
-alias glta="git log --format=\"%C(yellow)%h%C(reset) %C(blue)%an%C(reset) %s\""
+alias gll="git --no-pager log --oneline"
+alias glg="git --no-pager log --oneline --graph"
+alias glll="git --no-pager log --format=\"%C(yellow)%h%C(reset) %s\""
+alias glla="git --no-pager log --format=\"%C(yellow)%h%C(reset) %C(blue)%an%C(reset) %s\""
 alias gd="git diff"
-alias gdd="git diff --color-words"
 alias gdc="git diff --cached"
-alias gdw="git diff --no-ext-diff --word-diff"
+alias gdw="git diff --no-ext-diff --word-diff=color"
 alias gdf="git diff --color | diff-so-fancy | less -RFX"
-alias gdstat="git diff --stat"
-alias gitls="git ls-tree --name-only -r HEAD"
-alias gitls1="git ls-tree --name-only -r"
-alias gitlsa="git ls-tree -r -l"
+alias gdstat="git --no-pager diff --stat"
+alias glst="git ls-tree -rl HEAD"
+alias glst1="git ls-tree -rl"
+alias gsl="git --no-pager stash list"
+alias gss="git --no-pager stash show -u"
 alias gco="git checkout"
 alias ga="git add"
 alias gua="git restore --staged"
-alias gunstage="git reset HEAD"
-alias gc="git commit"
+alias guaa="git reset HEAD"
+alias gce="git commit"
 alias gcm="git commit -m"
 alias gc1="git commit --amend --no-edit"
 alias gcm1="git commit -m --amend"
+alias gc1e="git commit --amend"
+alias gcse="git commit -S"
 alias gcsm="git commit -S -m"
 alias gcs1="git commit -S --amend --no-edit"
 alias gcsm1="git commit -S -m --amend"
+alias gcs1e="git commit -S --amend"
 alias gf="git fetch"
 alias gpf="git push --force"
+alias gpl="git pull"
 alias undopush="git push -f origin HEAD^:master"
-
-alias nn="node --harmony"
 
 alias sss=". /etc/sh"
 
