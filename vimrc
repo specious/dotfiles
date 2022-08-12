@@ -52,9 +52,9 @@ call dein#add('vim-airline/vim-airline')         " Fancy status line
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('tpope/vim-vividchalk')
-call dein#add('flazz/vim-colorschemes')
 call dein#add('xolox/vim-misc')
 call dein#add('xolox/vim-colorscheme-switcher')
+call dein#add('flazz/vim-colorschemes')          " Lots of color schemes
 call dein#add('ryanoasis/vim-devicons')          " Fancy icons (must load last)
 
 call dein#end()
@@ -96,6 +96,9 @@ set hidden                          " Allow buffers with unsaved changes to be h
 let mapleader="\<Space>"
 let maplocalleader=","
 
+" Update plugins
+map <leader>modup :call dein#update()<CR>
+
 " Quicker command line
 map <leader>; :
 
@@ -127,11 +130,11 @@ map <leader>taboff :set listchars-=tab:>-<CR>
 " Toggle word wrapping
 map <F2> :set wrap!<CR>
 
-" Toggle relative line numbers
-map <F3> :set invrelativenumber<CR>
-
 " Toggle line numbers
-map <F4> :set invnumber!<CR>
+map <F3> :set invnumber!<CR>
+
+" Toggle relative line numbers
+map <F4> :set invrelativenumber<CR>
 
 " Split window and switch to the newly created one
 map <leader>s <C-w>s<C-w><C-w>
@@ -192,6 +195,9 @@ nnoremap J mjJ`j
 
 " Tab that will advance to align with next word on the previous line
 fun! SuperTab() abort
+  "
+  " TODO: Find last nonempty line
+  "
   let spaces = matchstr(getline(line('.')-1)[col('.')-1:], '^\s*')
 
   return len(spaces) ? spaces : "\<tab>"
@@ -284,7 +290,7 @@ map <F6> :PrevColorScheme<CR>:colorscheme<CR>
 map <F7> :NextColorScheme<CR>:colorscheme<CR>
 
 " Default color scheme
-colorscheme toothpik
+colorscheme sift
 
 " Line number color
 highlight LineNr ctermfg=green
