@@ -282,6 +282,16 @@ json() {
   jq < $1
 }
 
+# Print file contents in base64 format
+basef() {
+  base64 -w0 < $1
+}
+
+# Show a QR code of file contents encoded in base64
+qrf() {
+  basef $1 | qrcode-terminal
+}
+
 # Repeat a string "n" times e.g. repeatstr abc 3
 #
 # Solution: https://stackoverflow.com/a/5349842/
@@ -421,11 +431,13 @@ alias gua="git restore --staged"
 alias guaa="git reset HEAD"
 alias gce="git commit"
 alias gcm="git commit -m"
+alias gcme="git commit -e -m"
 alias gc1="git commit --amend --no-edit"
 alias gcm1="git commit -m --amend"
 alias gc1e="git commit --amend"
 alias gcse="git commit -S"
 alias gcsm="git commit -S -m"
+alias gcsme="git commit -S -e -m"
 alias gcs1="git commit -S --amend --no-edit"
 alias gcsm1="git commit -S -m --amend"
 alias gcs1e="git commit -S --amend"
