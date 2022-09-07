@@ -2,6 +2,9 @@ defutf8 on
 startup_message off
 defscrollback 32000
 
+# Visual bell off by default (toggle it with C-a C-g)
+vbell off
+
 # Disable screen lock actuation
 bind x
 bind ^x
