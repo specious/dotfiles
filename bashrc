@@ -391,11 +391,9 @@ alias bitly="bitly-client"
 alias jmp="bitly-client --domain j.mp"
 alias fzp="fzf +s --tac"
 alias sorta='grep -o . | sort | tr -d "\n"' # sort string alphabetically, e.g. echo cbda | sorta
-alias stripcolor="sed -E 's/[[:cntrl:]]\[[0-9]{1,3}m//g'" # Source: https://stackoverflow.com/a/46262090/
+alias stripcolor="sed -E 's/[[:cntrl:]]\[[0-9]{1,3}m//g'" # From: https://stackoverflow.com/a/46262090/
 alias jp="json_pp | c" # cat data.json | jp
 alias rmds="find . -name '*.DS_Store' -type f -ls -delete"
-alias pbcopy="xsel --clipboard --input"
-alias pbpaste="xsel --clipboard --output"
 alias sfd="setfont -d"
 alias saver="xscreensaver-command -activate"
 alias nn="node"
@@ -403,8 +401,8 @@ alias dos="dosbox-x -fs -nomenu"
 alias vplay="mplayer -vo fbdev2"
 alias cplay="mpv -vo caca"
 alias mix="pulsemixer"
-alias ii="ping 8.8.8.8"
-alias iii="ping -c 1 8.8.8.8"
+alias ii="ping -c 1 8.8.8.8"
+alias iii="ping 8.8.8.8"
 
 alias gs="git status -s"
 alias gr="git remote"
@@ -442,24 +440,26 @@ alias gcs1="git commit -S --amend --no-edit"
 alias gcsm1="git commit -S -m --amend"
 alias gcs1e="git commit -S --amend"
 alias gf="git fetch"
-alias gpf="git push --force"
-alias gpl="git pull"
+alias gp="git pull"
+alias gpa="git pull --rebase --autostash"
+alias gpush="git push"
+alias gpushf="git push --force"
 alias undopush="git push -f origin HEAD^:master"
 
 alias sss=". /etc/sh"
 
 # `cat` with syntax highlighting
 #
-# Requires Pygments package: sudo easy_install Pygments
+# Requires Pygments package: pip install Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
-# Depends on my fork of elm-format (official branch refuses to make tabsize configurable)
+# Depends on specious/elm-format fork (official mainline does not support configurable tab size)
 alias elm-format="elm-format --tabsize 2 --yes"
 
 # Enable git to find gpg
 export GPG_TTY=$(tty)
 
-# v is symlinked in /usr/local/bin to a vim of my choice
+# v is symlinked in /usr/local/bin to a specific version of vim
 EDITOR=v
 
 # Specific local configuration
