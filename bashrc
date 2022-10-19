@@ -175,30 +175,35 @@ ddg() {
   websearch $@
 }
 
+# DuckDuckGo search link
+ddgl() {
+  echo "https://ddg.gg?q=$(qterms $@)"
+}
+
+# DuckDuckGo image search link
+ddgli() {
+  echo "$(ddgl $@)&ia=images&iax=images"
+}
+
+# Open DuckDuckGo search in default browser
+ddgo() {
+  www `ddgl $@`
+}
+
 # Google search
 gg() {
   SEARCHSITE=https://www.google.com/search
   websearch $@
 }
 
-# DuckDuckGo query link
-ddgl() {
-  echo "https://ddg.gg?q=$(qterms $@)"
-}
-
-# Google query link
+# Google search link
 ggl() {
   echo "https://www.google.com/search?q=$(qterms $@)"
 }
 
 # Google image search query link
-ggil() {
+ggli() {
   echo "$(ggl $@)&tbm=isch"
-}
-
-# Open DuckDuckGo search in default browser
-ddgo() {
-  www `ddgl $@`
 }
 
 # Open Google search in default browser
