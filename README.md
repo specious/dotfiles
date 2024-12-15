@@ -47,11 +47,15 @@ Resources I found particularly helpful:
 
 Save this in your home folder as `~/.screenrc` if you use [screen](https://www.gnu.org/software/screen/) to abstract your terminal sessions.
 
-I now mostly use [tmux](https://github.com/tmux/tmux) because it's more advanced.
-
 Resources I found helpful:
 
 - [Quick reference](https://gist.github.com/kapitanluffy/656f3eb879b408b1d8a7fee0b6952216)
+
+## tmux.conf
+
+[tmux](https://github.com/tmux/tmux) is more advanced than GNU Screen.
+
+Save this as `/etc/tmux.conf` to use it system-wide, or as `~/.config/tmux/tmux.conf`.
 
 ## i3-config
 
