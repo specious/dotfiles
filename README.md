@@ -1,7 +1,5 @@
 Pieces to share from the configuration files I use.
 
-Some of my configuration files are also posted here: https://keybase.pub/tknomad/files/config/
-
 ## bashrc
 
 Functionality I share between bash and zsh. I generally have it available as `/etc/sh` which is sourced by both my `.bashrc` and `.zshrc` files with the line:
