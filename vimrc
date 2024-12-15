@@ -10,12 +10,13 @@ if &compatible
   set nocp
 endif
 
-let $DEIN_DIR = '~/.vim/dein'
+let s:dein_base = '/home/specious/.vim/dein'
+let s:dein_src = s:dein_base.'/repos/github.com/Shougo/dein.vim'
 
-set rtp+=$DEIN_DIR/repos/github.com/Shougo/dein.vim
+execute 'set rtp+='.s:dein_src
 
-call dein#begin($DEIN_DIR)
-call dein#add($DEIN_DIR.'/repos/github.com/Shougo/dein.vim')
+call dein#begin(s:dein_base)
+call dein#add(s:dein_src)
 
 if !has('nvim')
   call dein#add('roxma/nvim-yarp')
@@ -68,6 +69,9 @@ filetype plugin indent on
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Configure CtrlP to scan hidden files
+let g:ctrlp_show_hidden = 0
 
 syntax on
 set shortmess+=I                    " Disable vim intro message
@@ -192,6 +196,9 @@ augroup end
 inoremap <silent> <Esc> <Esc>`^
 inoremap <silent> <C-c> <Esc>`^
 
+" Clear the line under the cursor
+noremap <leader>ll 0D
+
 " Join lines without moving the cursor
 nnoremap J mjJ`j
 
@@ -289,7 +296,7 @@ map <F6> :PrevColorScheme<CR>:colorscheme<CR>
 map <F7> :NextColorScheme<CR>:colorscheme<CR>
 
 " Default color scheme
-colorscheme sift
+colorscheme maui
 
 " Line number color
 highlight LineNr ctermfg=green

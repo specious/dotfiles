@@ -35,6 +35,8 @@ I started my vim journey by looking at other people's `.vimrc` files and looking
 
 In fact, that's how I learned how to use vim.
 
+Adjust the `s:dein_base` value to match your home directory and dein installation directory. The reason I didn't use `~` was so that `root` would load the same `.vimrc` without problems.
+
 Resources I found particularly helpful:
 
 - [Vim annoyances](https://sanctum.geek.nz/arabesque/vim-annoyances/)
