@@ -53,13 +53,22 @@ Resources I found helpful:
 
 - [Quick reference](https://gist.github.com/kapitanluffy/656f3eb879b408b1d8a7fee0b6952216)
 
-## i3wm .config
+## i3-config
+
+Configuration for the [i3](https://i3wm.org) tiling window manager.
+
+Save this as `~/.config/i3/config` but change the parts relevant to your system.
 
 Resources I found helpful:
 
 - [An article on i3wm setup](https://tildeho.me/windowmanager-setup/)
+- [i3 User's Guide](https://i3wm.org/docs/userguide.html)
+
+## sway-config
 
 I now use [sway](https://swaywm.org) which is a [Wayland](https://wayland.freedesktop.org) compositor that uses a similar configuration to i3.
+
+Save this as `~/.config/sway/config` but change the parts relevant to your system.
 
 ## Also I use...
 
