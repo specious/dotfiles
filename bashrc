@@ -2,42 +2,42 @@ browser=firefox-developer-edition
 alias www=$browser
 
 # Enhanced su (su that reads this file)
-ssu() {
+function ssu() {
   su -c "zsh -ic $@"
 }
 
 # Decimal to hex
-d2h() {
+function d2h() {
   printf '%x\n' $1
 }
 
 # Decimal to hex (upper case)
-d2H() {
+function d2H() {
   printf '%X\n' $1
 }
 
 # Hex to decimal
-h2d() {
+function h2d() {
   echo $((16#$1))
 }
 
 # Decimal to binary
-d2b() {
+function d2b() {
   echo "ibase=10;obase=2;$1" | bc
 }
 
 # Binary to decimal
-b2d() {
+function b2d() {
   echo $((2#$1))
 }
 
 # Hex to binary
-h2b() {
+function h2b() {
   hex2base 2 $1
 }
 
 # Hex to arbitrary base, e.g.: hex2base 10 ff
-hex2base() {
+function hex2base() {
   # Target base must be written in the input base
   tobase=$(d2H $1)
 
@@ -46,103 +46,103 @@ hex2base() {
 }
 
 # Create a new directory and enter it
-md() {
+function md() {
   mkdir -p "$1" && cd "$1"
 }
 
 # Find file
-ff() {
+function ff() {
   find . -iname "$1"
 }
 
 # Unzip and delete zip file
-unzipp() {
+function unzipp() {
   unzip "$1" && rm -v "$1"
 }
 
 # Make tarball
-mktar() {
+function mktar() {
   for f in $@; do
     tar cvzf "$f.tar.gz" $f
   done
 }
 
 # fzf file contents (fuzzy search)
-f() {
+function f() {
   cat $1 | fzf
 }
 
 # Shuffle input, e.g. ls | shuffle
-shuffle() {
+function shuffle() {
   perl -MList::Util=shuffle -e 'print shuffle <>;'
 }
 
 # Downsample video
-ffdown() {
+function ffdown() {
   ffmpeg -i "$1" -vf scale=iw/2:-1 "$2"
 }
 
 # Convert file to mp4, e.g. ff2mp4 file.mkv file.mp4
-ff2mp4() {
+function ff2mp4() {
   ffmpeg -i "$1" -c:v mpeg4 -b:v 5000k "$2"
 }
 
 # Current working directory of a process, e.g. pwdx `pgrep firefox`
-pwdx() {
+function pwdx() {
   lsof -a -p $1 -d cwd -Fn | cut -c2- | grep -v $1
 }
 
 # Start HTTP server
-pserv() {
+function pserv() {
   port=${1:-8888}
   root=${2:-./}
   php -S "0.0.0.0:${port}" -t $root
 }
 
 # Start HTTP server and open in browser
-pservo() {
+function pservo() {
   port=${1:-8888}
   www http://localhost:${port}
   pserv $@
 }
 
 # Get local IP address
-getip() {
+function getip() {
   hostname -i
 }
 
 # Look up DNS records, e.g. dns fb.me aaaa
-dns() {
+function dns() {
   # If unspecified, default record type is A
   rec="${2:-A}"
   dig +nocmd $1 $rec @8.8.8.8 +multiline +noall +answer
 }
 
 # Render HTML
-html() {
+function html() {
   links -dump "data:text/html,$1"
 }
 
 # Open HTML from stdin in browser, e.g. cat index.html | viewhtml w3m
-viewhtml() {
+function viewhtml() {
   app=${1:-elinks}
   $app "data:text/html;base64,$(base64 -w 0 <&0)"
 }
 
 # Show server SSL certificate in plain text, e.g. sslplain reddit.com:443
-viewssl() {
+function viewssl() {
   openssl s_client -connect $@ 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' | openssl x509 -noout -text
 }
 
 # Make text URL-safe
-urlsafe() {
+function urlsafe() {
   for a in "$@"; do
     echo $(php -r "echo urlencode('$a');")
   done
 }
 
 # Make a query URL-safe, preserving "quoted terms"
-urlsafeq() {
+function urlsafeq() {
   for a in "$@"; do
     case $a in
       *[" "]* ) echo $(urlsafe "\"$a\"")
@@ -154,7 +154,7 @@ urlsafeq() {
 }
 
 # Build a search query URL fragment
-qterms() {
+function qterms() {
   t=$IFS
   IFS=$'\n'
   terms=($(urlsafeq $@))
@@ -165,75 +165,75 @@ qterms() {
 
 # Launch a web search from a terminal
 #   e.g. SEARCHSITE="https://ddg.gg" websearch metabolic pathways
-websearch() {
+function websearch() {
   [[ $# -eq 0 ]] && links $SEARCHSITE || links "$SEARCHSITE?q=$(qterms $@)"
 }
 
 # DuckDuckGo search
-ddg() {
+function ddg() {
   SEARCHSITE=https://lite.duckduckgo.com/lite/
   websearch $@
 }
 
 # DuckDuckGo search link
-ddgl() {
+function ddgl() {
   echo "https://ddg.gg?q=$(qterms $@)"
 }
 
 # DuckDuckGo image search link
-ddgli() {
+function ddgli() {
   echo "$(ddgl $@)&ia=images&iax=images"
 }
 
 # Open DuckDuckGo search in default browser
-ddgo() {
+function ddgo() {
   www `ddgl $@`
 }
 
 # Google search
-gg() {
+function gg() {
   SEARCHSITE=https://www.google.com/search
   websearch $@
 }
 
 # Google search link
-ggl() {
+function ggl() {
   echo "https://www.google.com/search?q=$(qterms $@)"
 }
 
 # Google image search query link
-ggli() {
+function ggli() {
   echo "$(ggl $@)&tbm=isch"
 }
 
 # Open Google search in default browser
-ggo() {
+function ggo() {
   www `ggl $@`
 }
 
 # Shorten URL with is.gd
-isgd() {
+function isgd() {
   curl -s "https://is.gd/api.php?longurl=${1}"
   echo
 }
 
 # Publish to ix, e.g. cat ~/.bashrc | ix
-ix() {
+function ix() {
   curl -F 'f:1=<-' ix.io
 }
 
 # Shorten github URL: http://git.io/help
-gitio() {
+function gitio() {
   curl -i http://git.io -F "url=${1}" -F "code=${2}"
 }
 
 # Show current branch or commit ref
-gbb() {
+function gbb() {
   git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD
 }
 
 # 'git stash' but keeping the working directory untouched (doesn't stash untracked files)
-gsave() {
+function gsave() {
   # Print usage
   [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
 
@@ -247,7 +247,7 @@ gsave() {
 }
 
 # 'git stash' but keeping the working directory untouched (stash includes untracked files)
-gsaveu() {
+function gsaveu() {
   # Print usage
   [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
 
@@ -267,7 +267,7 @@ gsaveu() {
 }
 
 # History of a file's size by revision, e.g. git-filehist yarn.lock
-git-filehist() {
+function git-filehist() {
   for rev in $(git rev-list HEAD -- $1); do
     git ls-tree -r -l $rev $1
   done
@@ -278,29 +278,29 @@ git-filehist() {
 # Show difference in size between two versions of a file in git
 #
 # Difference since previous commit: gdbytes @~ @ index.html
-gdbytes() {
+function gdbytes() {
   echo "$(git cat-file -s $1:$3) -> $(git cat-file -s $2:$3)"
 }
 
 # Pretty print json
-json() {
+function json() {
   jq < $1
 }
 
 # Print file contents in base64 format
-basef() {
+function basef() {
   base64 -w0 < $1
 }
 
 # Show a QR code of file contents encoded in base64
-qrf() {
+function qrf() {
   basef $1 | qrcode-terminal
 }
 
 # Repeat a string "n" times e.g. repeatstr abc 3
 #
 # Solution: https://stackoverflow.com/a/5349842/
-repeatstr() {
+function repeatstr() {
   printf "%.0s$1" $(seq 1 $2)
 }
 
@@ -309,7 +309,7 @@ repeatstr() {
 #   e.g. cat index.html | reindent 2 4
 #
 # Solution: https://unix.stackexchange.com/a/47210/
-reindent() {
+function reindent() {
   if [[ $# -gt 2 ]]; then
     f=$(mktemp)
     cat $3 | reindent $1 $2 > $f && mv $f $3
@@ -319,24 +319,24 @@ reindent() {
 }
 
 # Get repository for NPM package
-nrepo() {
+function nrepo() {
   npm v $1 repository.url
 }
 
 # Get homepage for NPM package
-nurl() {
+function nurl() {
   npm v $1 homepage
 }
 
 # Set title in GNU Screen
-stitle() {
+function stitle() {
   echo -e '\033k'$1'\033\\'
 }
 
 # Set environment variable in current GNU Screen session
 #
 # (it will only take effect when new windows are opened)
-ssetenv() {
+function ssetenv() {
   screen -X setenv $1 $2
 }
 
@@ -346,7 +346,7 @@ ssetenv() {
 #
 # Inside current session:
 #   saexec <executable> [<args>]
-saexec() {
+function saexec() {
   if [ -n "$STY" ]; then
     screen -X at '#' exec $@
   else
@@ -355,7 +355,7 @@ saexec() {
 }
 
 # Play youtube in the framebuffer console
-yplay() {
+function yplay() {
   youtube-dl -o - $1 | mplayer -vo fbdev2 -
 }
 
@@ -467,5 +467,5 @@ export GPG_TTY=$(tty)
 # v is symlinked in /usr/local/bin to a specific version of vim
 EDITOR=v
 
-# Specific local configuration
+# Machine-specific local configuration
 . /etc/sh-local.sh
