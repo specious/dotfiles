@@ -1,5 +1,5 @@
 #
-# Configuration for GNU Screen 5+
+# Configuration for GNU Screen 4 or earlier
 #
 
 defutf8 on
@@ -17,9 +17,9 @@ bind ^x
 #
 # http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
 #
-# %{= 7;0}  : set white (7) text on black (0) background
+# %{= kw}  : set (w)hite text on blac(k) background
 # %-w      : numbers and titles of all windows before the current one
-# %{=b 7;4} : set (b)old font with white (7) text on blue (4) background
+# %{=b bw} : set (b)old font with (w)hite text on (b)lue background
 # %n %t    : number and title of current window
 # %{-}     : reset attributes and colors
 # %+w      : numbers and titles of all windows after the current one
@@ -30,4 +30,4 @@ bind ^x
 # %Y-%M-%d : current date
 # %c       : current time (24 hour format)
 #
-caption always "%{= 7;0}%-w%{=b 7;4}%n %t%{-}%+w%-=%{=b}%S :: @%H - %Y-%M-%d %c"
+caption always "%{= kw}%-w%{=b bw}%n %t%{-}%+w%-=%{=b}%S :: @%H - %Y-%M-%d %c"
