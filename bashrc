@@ -228,11 +228,31 @@ function gitio() {
 }
 
 # Show current branch or commit ref
-function gbb() {
+function gref() {
   git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD
 }
 
-# 'git stash' but keeping the working directory untouched (doesn't stash untracked files)
+# List git branches by recency of commit activity
+#
+# Usage:
+#   gblist
+#     List local branches with recent commits
+#   gblist origin
+#     List remote branches with recent commits
+#   gblist origin 10
+#     List 10 latest remote branches with recent commits
+function gblist() {
+  local refs
+
+  [ $# -eq 0 ] && refs="refs/heads/"
+  [ $# -ge 1 ] && refs="refs/remotes/$1/"
+
+  local cmd="git for-each-ref --sort=-committerdate --format='%(refname:short) - %(committerdate:relative)' $refs"
+
+  [ $# -ge 2 ] && eval "$cmd | head -n $2" || eval "$cmd"
+}
+
+# 'git stash' without disturbing the working directory (doesn't stash untracked files)
 function gsave() {
   # Print usage
   [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
@@ -246,7 +266,7 @@ function gsave() {
   git --no-pager stash list -1
 }
 
-# 'git stash' but keeping the working directory untouched (stash includes untracked files)
+# 'git stash' without disturbing the working directory (stash with untracked files)
 function gsaveu() {
   # Print usage
   [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
