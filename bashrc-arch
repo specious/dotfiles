@@ -1,0 +1,23 @@
+#
+# Shell configuration specific to Arch Linux
+#
+
+# Show package build script
+function pkg () {
+  asp show $1 | c
+}
+
+# Show binaries installed by a package
+function plbin () {
+  pacman -Ql $1 | ag -sw bin
+}
+
+alias pi="yay -Sii"
+alias pl="yay -Ql"
+alias po="yay -Qo"
+alias pfiles="pkgfile -l"
+alias yup="yay -Syu"
+
+alias regrub="grub-mkconfig -o /boot/grub/grub.cfg"
+
+alias kboot="sudo kexec -l /boot/linux --reuse-cmdline && systemctl kexec"

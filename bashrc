@@ -1,10 +1,6 @@
 browser=firefox-developer-edition
-alias www=$browser
 
-# Enhanced su (su that reads this file)
-function ssu() {
-  su -c "zsh -ic $@"
-}
+alias www="$browser"
 
 # Decimal to hex
 function d2h() {
@@ -185,7 +181,7 @@ function ddgli() {
   echo "$(ddgl $@)&ia=images&iax=images"
 }
 
-# Open DuckDuckGo search in default browser
+# Open DuckDuckGo search in browser
 function ddgo() {
   www `ddgl $@`
 }
@@ -206,7 +202,7 @@ function ggli() {
   echo "$(ggl $@)&tbm=isch"
 }
 
-# Open Google search in default browser
+# Open Google search in browser
 function ggo() {
   www `ggl $@`
 }
@@ -406,9 +402,9 @@ alias t="tmux new-window"
 alias sls="tmux list-sessions"
 alias pstree="pstree -h"
 alias dush="du -sh .[!.]* *"
-alias to="trans -I -t"
+alias to="trans -I -t" # install translate-shell
 alias un="trans -I -s"
-alias qr="qrcode-terminal"
+alias qr="qrcode-terminal" # npm i -g qrcode-terminal
 alias o7="optipng -o 7"
 alias jpego="jpegtran -copy none -optimize -perfect"
 alias yget="yt-dlp -o '%(title)s.%(ext)s'"
@@ -418,7 +414,7 @@ alias wwwrip="wget --recursive --no-clobber --page-requisites --html-extension -
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ssl="openssl s_client -connect"
 alias jp2a="jp2a --colors"
-alias bitly="bitly-client"
+alias bitly="bitly-client" # npm i -g bitly-client
 alias jmp="bitly-client --domain j.mp"
 alias fzp="fzf +s --tac"
 alias sorta='grep -o . | sort | tr -d "\n"' # sort string alphabetically, e.g. echo cbda | sorta
@@ -429,9 +425,7 @@ alias sfd="setfont -d"
 alias saver="xscreensaver-command -activate"
 alias nn="node"
 alias dos="dosbox-x -fs -nomenu"
-alias vplay="mplayer -vo fbdev2"
-alias cplay="mpv -vo caca"
-alias pmix="pulsemixer"
+alias dockerip="docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 alias ii="ping -c 1 8.8.8.8"
 alias iii="ping 8.8.8.8"
 
@@ -480,9 +474,10 @@ alias gpush="git push"
 alias gpushf="git push --force"
 alias undopush="git push -f origin HEAD^:master"
 
+# Reload shell configuration
 alias sss=". /etc/sh"
 
-# Don't paginate if less than a page
+# Don't paginate if less than a page of content
 export LESS="-F -X $LESS"
 
 # Color `cat` with syntax highlighting
@@ -490,14 +485,11 @@ export LESS="-F -X $LESS"
 # Requires Pygments package: pip install Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
-# Depends on specious/elm-format fork (official mainline does not support configurable tab size)
+# Depends on the specious/elm-format fork (official mainline does not support configurable tab size)
 alias elm-format="elm-format --tabsize 2 --yes"
 
-# Enable git to find gpg
+# This makes GPG pin entry not crash when signing git commits
 export GPG_TTY=$(tty)
 
-# v is symlinked in /usr/local/bin to a specific version of vim
+# v is symlinked in /usr/local/bin to a specific version of (n)vim
 EDITOR=v
-
-# Machine-specific local configuration
-. /etc/sh-local.sh

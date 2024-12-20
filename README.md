@@ -11,13 +11,28 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 
 ## bashrc
 
-It's included with the name `bashrc` here, but it contains functionality designed to be shared by both bash and zsh. I generally make it available as `/etc/sh` which is [sourced](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html#index-source) by both my `.bashrc` and `.zshrc` files by including this line:
+It's included with the name `bashrc` here, but it contains functionality designed to be shared by both bash and zsh. I generally save it as `/etc/sh` which is [sourced](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html#index-source) by both my `.bashrc` and `.zshrc` files like this:
 
 ```sh
 . /etc/sh
 ```
 
-This file, in turn, sources `/etc/sh-local.sh`, which contains functionality for that specific machine or operating system.
+## bashrc-*
+
+These are the more system-specific shell configuration files. My actual configuration layout looks like:
+
+- `~/.zshrc` and `~/.bashrc` source `/etc/sh-local.sh`
+
+```sh
+# /etc/sh-local.sh
+
+. /etc/sh
+. /etc/sh-linux.sh
+. /etc/sh-arch.sh
+. /etc/sh-x1.sh
+
+# Local configuration specific to this machine
+```
 
 ## zshrc
 
