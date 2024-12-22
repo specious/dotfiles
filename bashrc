@@ -95,14 +95,14 @@ function pwdx() {
 
 # Start HTTP server
 function pserv() {
-  port=${1:-8888}
-  root=${2:-./}
+  local port=${1:-8888}
+  local root=${2:-./}
   php -S "0.0.0.0:${port}" -t "$root"
 }
 
 # Start HTTP server and open in browser
 function pservo() {
-  port=${1:-8888}
+  local port=${1:-8888}
   www http://localhost:${port}
   pserv "$@"
 }
@@ -114,20 +114,21 @@ function getip() {
 
 # Look up DNS records, e.g. dns fb.me aaaa
 function dns() {
+  [[ $# -eq 0 ]] && echo "Usage, e.g.: $0 microsoft.com aaaa" && return 1
+
   # If unspecified, default record type is A
-  rec="${2:-A}"
+  local rec="${2:-A}"
   dig +nocmd "$1" "$rec" @8.8.8.8 +multiline +noall +answer
 }
 
 # Render HTML
-function html() {
+function renderhtml() {
   links -dump "data:text/html,$1"
 }
 
 # Open HTML from stdin in browser, e.g. cat index.html | viewhtml w3m
 function viewhtml() {
-  app=${1:-elinks}
-  $app "data:text/html;base64,$(base64 -w 0 <&0)"
+  ${1:-elinks} "data:text/html;base64,$(base64 -w 0 <&0)"
 }
 
 # Show server SSL certificate in plain text, e.g. sslplain reddit.com:443
@@ -222,8 +223,7 @@ function ggo() {
 
 # Shorten URL with is.gd
 function isgd() {
-  curl -s "https://is.gd/api.php?longurl=${1}"
-  echo
+  curl -s "https://is.gd/api.php?longurl=${1}" && echo
 }
 
 # Publish to ix, e.g. cat ~/.bashrc | ix
@@ -264,12 +264,12 @@ function gblist() {
 # 'git stash' without disturbing the working directory (doesn't stash untracked files)
 function gsave() {
   # Print usage
-  [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
+  [ $# -eq 0 ] && echo "$0 <message>" && return 1
 
   # Spaces must be in quotes
-  [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
+  [ $# -gt 1 ] && echo "Put the message in quotes" && return 1
 
-  git stash store "$(git stash create "$1")" -m "On $(gbb): $1"
+  git stash store "$(git stash create "$1")" -m "On $(gref): $1"
 
   # Show the new entry
   git --no-pager stash list -1
@@ -278,10 +278,10 @@ function gsave() {
 # 'git stash' without disturbing the working directory (stash with untracked files)
 function gsaveu() {
   # Print usage
-  [ $# -eq 0 ] && echo "$0 <message>" && kill -INT $$
+  [ $# -eq 0 ] && echo "$0 <message>" && return 1
 
   # Spaces must be in quotes
-  [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
+  [ $# -gt 1 ] && echo "Put the message in quotes" && return 1
 
   # Stash everything including untracked files
   git stash --include-untracked --keep-index -m "$1"
@@ -290,8 +290,10 @@ function gsaveu() {
   git stash apply --quiet
 
   echo
+  echo "Individual commits that comprise the new stash:"
+  echo
 
-  # Show the commits that make up the stash 
+  # Show the commits that make up the stash
   git --no-pager log stash@{0} --oneline -3
 }
 
