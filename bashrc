@@ -88,9 +88,31 @@ function ff2mp4() {
   ffmpeg -i "$1" -c:v mpeg4 -b:v 5000k "$2"
 }
 
-# Current working directory of a process, e.g. pwdx `pgrep firefox`
+# Current working directory of a process
+#
+# E.g.:
+# - pwdx firefox
+# - pwdx 10081
 function pwdx() {
-  lsof -a -p "$1" -d cwd -Fn | cut -c2- | grep -v "$1"
+  # echo "called: $@"
+  [[ $# -eq 0 ]] && echo "Provide a process name or ID" >&2 && return 1
+
+  if [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo -n "$1: "
+    lsof -a -p "$1" -d cwd -Fn | cut -c2- | grep -v "$1"
+  else
+    local pids=($(pgrep "$1"))
+
+    if [[ ${#pids[@]} -ne 0 ]]; then
+      for pid in $pids; do
+        # echo "found: $pid"
+        pwdx "$pid"
+      done
+    else
+      echo "No process found with this name: $1" >&2
+      return 1
+    fi
+  fi
 }
 
 # Start HTTP server
