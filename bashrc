@@ -2,43 +2,43 @@ browser=firefox-developer-edition
 
 alias www="$browser"
 
-# Decimal to hex
+# Convert decimal to hex
 function d2h() {
-  printf '%x\n' $1
+  printf '%x\n' "$1"
 }
 
-# Decimal to hex (upper case)
+# Convert decimal to hex (upper case)
 function d2H() {
-  printf '%X\n' $1
+  printf '%X\n' "$1"
 }
 
-# Hex to decimal
+# Convert hex to decimal
 function h2d() {
   echo $((16#$1))
 }
 
-# Decimal to binary
+# Convert decimal to binary
 function d2b() {
   echo "ibase=10;obase=2;$1" | bc
 }
 
-# Binary to decimal
+# Convert binary to decimal
 function b2d() {
   echo $((2#$1))
 }
 
-# Hex to binary
+# Convert hex to binary
 function h2b() {
-  hex2base 2 $1
+  hex2base 2 "$1"
 }
 
-# Hex to arbitrary base, e.g.: hex2base 10 ff
+# Convert hex to arbitrary base, e.g.: hex2base 10 ff
 function hex2base() {
   # Target base must be written in the input base
-  tobase=$(d2H $1)
+  tobase=$(d2H "$1")
 
   # Input to 'bc' must be upper case
-  echo "ibase=16;obase=$tobase;$(echo $2 | tr '[a-z]' '[A-Z]')" | bc
+  echo "ibase=16;obase=$tobase;$(echo "$2" | tr '[a-z]' '[A-Z]')" | bc
 }
 
 # Create a new directory and enter it
@@ -51,21 +51,26 @@ function ff() {
   find . -iname "$1"
 }
 
+# Find file (fuzzy)
+function fff() {
+  find . -iname "*$1*"
+}
+
 # Unzip and delete zip file
 function unzipp() {
   unzip "$1" && rm -v "$1"
 }
 
-# Make tarball
+# Pass directories to make tarballs of them
 function mktar() {
-  for f in $@; do
-    tar cvzf "$f.tar.gz" $f
+  for f in "$@"; do
+    tar cvzf "$f.tar.gz" "$f"
   done
 }
 
 # fzf file contents (fuzzy search)
 function f() {
-  cat $1 | fzf
+  fzf < "$1"
 }
 
 # Shuffle input, e.g. ls | shuffle
@@ -85,21 +90,21 @@ function ff2mp4() {
 
 # Current working directory of a process, e.g. pwdx `pgrep firefox`
 function pwdx() {
-  lsof -a -p $1 -d cwd -Fn | cut -c2- | grep -v $1
+  lsof -a -p "$1" -d cwd -Fn | cut -c2- | grep -v "$1"
 }
 
 # Start HTTP server
 function pserv() {
   port=${1:-8888}
   root=${2:-./}
-  php -S "0.0.0.0:${port}" -t $root
+  php -S "0.0.0.0:${port}" -t "$root"
 }
 
 # Start HTTP server and open in browser
 function pservo() {
   port=${1:-8888}
   www http://localhost:${port}
-  pserv $@
+  pserv "$@"
 }
 
 # Get local IP address
@@ -111,7 +116,7 @@ function getip() {
 function dns() {
   # If unspecified, default record type is A
   rec="${2:-A}"
-  dig +nocmd $1 $rec @8.8.8.8 +multiline +noall +answer
+  dig +nocmd "$1" "$rec" @8.8.8.8 +multiline +noall +answer
 }
 
 # Render HTML
@@ -127,24 +132,32 @@ function viewhtml() {
 
 # Show server SSL certificate in plain text, e.g. sslplain reddit.com:443
 function viewssl() {
-  openssl s_client -connect $@ 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' | openssl x509 -noout -text
+  openssl s_client -connect "$@" 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' | openssl x509 -noout -text
 }
 
-# Make text URL-safe
+# Make strings URL-safe
 function urlsafe() {
   for a in "$@"; do
-    echo $(php -r "echo urlencode('$a');")
+    php -r "echo urlencode('$a');" && echo
   done
 }
 
-# Make a query URL-safe, preserving "quoted terms"
+# Make strings URL-safe, preserving text with spaces as "quoted text"
+#
+# In other words:
+#
+#   urlsafeq "now reticulating splines"
+#
+# Yields:
+#
+#   %22now+reticulating+splines%22
 function urlsafeq() {
   for a in "$@"; do
     case $a in
-      *[" "]* ) echo $(urlsafe "\"$a\"")
+      *[" "]* ) urlsafe "\"$a\""
         ;;
       *)
-        echo $a
+        echo "$a"
     esac
   done
 }
@@ -153,7 +166,7 @@ function urlsafeq() {
 function qterms() {
   t=$IFS
   IFS=$'\n'
-  terms=($(urlsafeq $@))
+  terms=($(urlsafeq "$@"))
   IFS="+"
   echo "${terms[*]}"
   IFS=$t
@@ -162,49 +175,49 @@ function qterms() {
 # Launch a web search from a terminal
 #   e.g. SEARCHSITE="https://ddg.gg" websearch metabolic pathways
 function websearch() {
-  [[ $# -eq 0 ]] && links $SEARCHSITE || links "$SEARCHSITE?q=$(qterms $@)"
+  [[ $# -eq 0 ]] && links "$SEARCHSITE" || links "$SEARCHSITE?q=$(qterms "$@")"
 }
 
 # DuckDuckGo search
 function ddg() {
   SEARCHSITE=https://lite.duckduckgo.com/lite/
-  websearch $@
+  websearch "$@"
 }
 
 # DuckDuckGo search link
 function ddgl() {
-  echo "https://ddg.gg?q=$(qterms $@)"
+  echo "https://ddg.gg?q=$(qterms "$@")"
 }
 
 # DuckDuckGo image search link
 function ddgli() {
-  echo "$(ddgl $@)&ia=images&iax=images"
+  echo "$(ddgl "$@")&ia=images&iax=images"
 }
 
 # Open DuckDuckGo search in browser
 function ddgo() {
-  www `ddgl $@`
+  www $(ddgl "$@")
 }
 
 # Google search
 function gg() {
   SEARCHSITE=https://www.google.com/search
-  websearch $@
+  websearch "$@"
 }
 
 # Google search link
 function ggl() {
-  echo "https://www.google.com/search?q=$(qterms $@)"
+  echo "https://www.google.com/search?q=$(qterms "$@")"
 }
 
 # Google image search query link
 function ggli() {
-  echo "$(ggl $@)&tbm=isch"
+  echo "$(ggl "$@")&tbm=isch"
 }
 
 # Open Google search in browser
 function ggo() {
-  www `ggl $@`
+  www $(ggl "$@")
 }
 
 # Shorten URL with is.gd
@@ -256,7 +269,7 @@ function gsave() {
   # Spaces must be in quotes
   [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
 
-  git stash store $(git stash create $@) -m "On $(gbb): $@"
+  git stash store "$(git stash create "$1")" -m "On $(gbb): $1"
 
   # Show the new entry
   git --no-pager stash list -1
@@ -271,7 +284,7 @@ function gsaveu() {
   [ $# -gt 1 ] && echo "Put the message in quotes" && kill -INT $$
 
   # Stash everything including untracked files
-  git stash --include-untracked --keep-index -m $@
+  git stash --include-untracked --keep-index -m "$1"
 
   # Restore working tree
   git stash apply --quiet
@@ -284,8 +297,8 @@ function gsaveu() {
 
 # History of a file's size by revision, e.g. git-filehist yarn.lock
 function git-filehist() {
-  for rev in $(git rev-list HEAD -- $1); do
-    git ls-tree -r -l $rev $1
+  for rev in $(git rev-list HEAD -- "$1"); do
+    git ls-tree -r -l "$rev" "$1"
   done
 }
 
@@ -295,29 +308,29 @@ function git-filehist() {
 #
 # Difference since previous commit: gdbytes @~ @ index.html
 function gdbytes() {
-  echo "$(git cat-file -s $1:$3) -> $(git cat-file -s $2:$3)"
+  echo "$(git cat-file -s "$1":"$3") -> $(git cat-file -s "$2":"$3")"
 }
 
 # Pretty print json
 function json() {
-  jq < $1
+  jq < "$1"
 }
 
 # Print file contents in base64 format
 function basef() {
-  base64 -w0 < $1
+  base64 -w0 < "$1"
 }
 
 # Show a QR code of file contents encoded in base64
 function qrf() {
-  basef $1 | qrcode-terminal
+  basef "$1" | qrcode-terminal
 }
 
 # Repeat a string "n" times e.g. repeatstr abc 3
 #
 # Solution: https://stackoverflow.com/a/5349842/
 function repeatstr() {
-  printf "%.0s$1" $(seq 1 $2)
+  printf "%.0s$1" $(seq 1 "$2")
 }
 
 # Reindent file that uses spaces
@@ -328,32 +341,32 @@ function repeatstr() {
 function reindent() {
   if [[ $# -gt 2 ]]; then
     f=$(mktemp)
-    cat $3 | reindent $1 $2 > $f && mv $f $3
+    reindent "$1" "$2" < "$3" > "$f" && mv "$f" "$3"
   else
-    sed "h;s/[^ ].*//;s/$(repeatstr ' ' $1)/$(repeatstr ' ' $2)/g;G;s/\n *//"
+    sed "h;s/[^ ].*//;s/$(repeatstr ' ' "$1")/$(repeatstr ' ' "$2")/g;G;s/\n *//"
   fi
 }
 
 # Get repository for NPM package
 function nrepo() {
-  npm v $1 repository.url
+  npm v "$1" repository.url
 }
 
 # Get homepage for NPM package
 function nurl() {
-  npm v $1 homepage
+  npm v "$1" homepage
 }
 
 # Set title in GNU Screen
 function stitle() {
-  echo -e '\033k'$1'\033\\'
+  echo -e '\033k'"$1"'\033\\'
 }
 
 # Set environment variable in current GNU Screen session
 #
 # (it will only take effect when new windows are opened)
 function ssetenv() {
-  screen -X setenv $1 $2
+  screen -X setenv "$1" "$2"
 }
 
 # Execute a process in each window inside a GNU Screen session
@@ -364,15 +377,15 @@ function ssetenv() {
 #   saexec <executable> [<args>]
 function saexec() {
   if [ -n "$STY" ]; then
-    screen -X at '#' exec $@
+    screen -X at '#' exec "$@"
   else
-    screen -S $1 -X at '#' exec "${@:2}"
+    screen -S "$1" -X at '#' exec "${@:2}"
   fi
 }
 
 # Play youtube in the framebuffer console
 function yplay() {
-  youtube-dl -o - $1 | mplayer -vo fbdev2 -
+  youtube-dl -o - "$1" | mplayer -vo fbdev2 -
 }
 
 alias ..="cd .."
@@ -492,4 +505,4 @@ alias elm-format="elm-format --tabsize 2 --yes"
 export GPG_TTY=$(tty)
 
 # v is symlinked in /usr/local/bin to a specific version of (n)vim
-EDITOR=v
+export EDITOR=v
