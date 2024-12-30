@@ -8,6 +8,7 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 
 - [bash](https://gist.github.com/specious/8244801)
 - [zsh](https://github.com/specious/bender)
+- [fish](https://gist.github.com/specious/50bac54ac9e4ba9b88dbf24623d51dfc)
 
 ## bashrc
 
