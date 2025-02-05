@@ -514,6 +514,11 @@ alias gpush="git push"
 alias gpushf="git push --force"
 alias undopush="git push -f origin HEAD^:master"
 
+# Decode JWT header, payload and expiration time
+alias jwth='cut -d "." -f 1 | tr "_-" "+/" | awk "{while (length(\$0) % 4) { \$0 = \$0 \"=\" } print}" | base64 -d | jq'
+alias jwtp='cut -d "." -f 2 | tr "_-" "+/" | awk "{while (length(\$0) % 4) { \$0 = \$0 \"=\" } print}" | base64 -d | jq'
+alias jwtexp='cut -d "." -f 2 | tr "_-" "+/" | awk "{while (length(\$0) % 4) { \$0 = \$0 \"=\" } print}" | base64 -d | jq -r ".exp" | xargs -I {} sh -c "echo UTC: \$(date -u -d @{}) && echo Local: \$(date -d @{})"'
+
 # Reload shell configuration
 alias sss=". /etc/sh"
 
