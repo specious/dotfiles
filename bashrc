@@ -46,13 +46,13 @@ function md() {
   mkdir -p "$1" && cd "$1"
 }
 
-# Find file
-function ff() {
+# Find file (exact)
+function f() {
   find . -iname "$1"
 }
 
 # Find file (fuzzy)
-function fff() {
+function ff() {
   find . -iname "*$1*"
 }
 
@@ -61,15 +61,15 @@ function unzipp() {
   unzip "$1" && rm -v "$1"
 }
 
-# Pass directories to make tarballs of them
+# Make .tar.gz tarballs of one or more directories
 function mktar() {
   for f in "$@"; do
     tar cvzf "$f.tar.gz" "$f"
   done
 }
 
-# fzf file contents (fuzzy search)
-function f() {
+# Fuzzy search file contents with fzf
+function fz() {
   fzf < "$1"
 }
 
@@ -101,7 +101,8 @@ function pwdx() {
     echo -n "$1: "
     lsof -a -p "$1" -d cwd -Fn | cut -c2- | grep -v "$1"
   else
-    local pids=($(pgrep "$1"))
+    local pids
+    pids=($(pgrep "$1"))
 
     if [[ ${#pids[@]} -ne 0 ]]; then
       for pid in $pids; do
@@ -248,10 +249,12 @@ function isgd() {
   curl -s "https://is.gd/api.php?longurl=${1}" && echo
 }
 
-# Publish to ix, e.g. cat ~/.bashrc | ix
+# Publish to ix, e.g. cat ~/.bashrc | ix (might be defunct)
 function ix() {
   curl -F 'f:1=<-' ix.io
 }
+
+# TODO: Implement uploading to 0x0.st
 
 # Shorten github URL: http://git.io/help
 function gitio() {
@@ -311,8 +314,6 @@ function gsaveu() {
   # Restore working tree
   git stash apply --quiet
 
-  echo
-  echo "Individual commits that comprise the new stash:"
   echo
 
   # Show the commits that make up the stash
@@ -447,6 +448,7 @@ alias jpego="jpegtran -copy none -optimize -perfect"
 alias yget="yt-dlp -o '%(title)s.%(ext)s'"
 alias yget-mp3="yget -x --audio-format mp3 --add-metadata"
 alias y3="yget-mp3"
+alias jj="yq -P -oy" # Nicely print json or yml as yml
 alias wwwrip="wget --recursive --no-clobber --page-requisites --html-extension --convert-links --no-parent"
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ssl="openssl s_client -connect"
@@ -476,6 +478,7 @@ alias gll="git --no-pager log --oneline"
 alias glg="git --no-pager log --oneline --graph"
 alias glll="git --no-pager log --format=\"%C(yellow)%h%C(reset) %s\""
 alias glla="git --no-pager log --format=\"%C(yellow)%h%C(reset) %C(blue)%an%C(reset) %s\""
+alias gllf="gll --format="%ad" --date=short --" # Show when a file was last touched
 alias glf="git rev-list @ --oneline" # List commits that changed a file
 alias gd="git diff"
 alias gdc="git diff --cached"
