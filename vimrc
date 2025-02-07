@@ -278,6 +278,9 @@ map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 " Ensure C++ has // comments
 au FileType cpp setlocal commentstring=//%s
 
+" Protect default word motions by enabling enhanced motions under a special prefix
+let g:wordmotion_prefix = '<Leader>w'
+
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " show airline with only one screen
