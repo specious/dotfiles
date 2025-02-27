@@ -247,12 +247,22 @@ function isgd() {
   curl -s "https://is.gd/api.php?longurl=${1}" && echo
 }
 
-# Publish to ix, e.g. cat ~/.bashrc | ix (might be defunct)
-function ix() {
-  curl -F 'f:1=<-' ix.io
-}
+# Publish stdin to ix, e.g. cat ~/.bashrc | ix (might be defunct)
+# function ix() {
+#   curl -F 'f:1=<-' ix.io
+# }
 
-# TODO: Implement uploading to 0x0.st
+# Publish stdin to 0x0.st, e.g. cat ~/.bashrc | 0x0
+function 0x0() {
+  if [ -p /dev/stdin ]; then
+    curl -F "file=@-" https://0x0.st
+  elif [[ -n "$1" && -f "$1" ]]; then
+    curl -F "file=@$1" https://0x0.st
+  else
+    echo "Usage: $0 <file> or pipe data to the script"
+    return 1
+  fi
+}
 
 # Shorten github URL: http://git.io/help
 function gitio() {
