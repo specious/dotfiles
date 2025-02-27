@@ -94,8 +94,7 @@ function ff2mp4() {
 # - pwdx firefox
 # - pwdx 10081
 function pwdx() {
-  # echo "called: $@"
-  [[ $# -eq 0 ]] && echo "Provide a process name or ID" >&2 && return 1
+  [ -z "$1" ] && echo "Provide a process name or ID" >&2 && return 1
 
   if [[ "$1" =~ ^[0-9]+$ ]]; then
     echo -n "$1: "
@@ -106,7 +105,6 @@ function pwdx() {
 
     if [[ ${#pids[@]} -ne 0 ]]; then
       for pid in $pids; do
-        # echo "found: $pid"
         pwdx "$pid"
       done
     else
@@ -137,7 +135,7 @@ function getip() {
 
 # Look up DNS records, e.g. dns fb.me aaaa
 function dns() {
-  [[ $# -eq 0 ]] && echo "Usage, e.g.: $0 microsoft.com aaaa" && return 1
+  [[ -z "$1" ]] && echo "Usage, e.g.: $0 microsoft.com aaaa" && return 1
 
   # If unspecified, default record type is A
   local rec="${2:-A}"
@@ -199,7 +197,7 @@ function qterms() {
 # Launch a web search from a terminal
 #   e.g. SEARCHSITE="https://ddg.gg" websearch metabolic pathways
 function websearch() {
-  [[ $# -eq 0 ]] && links "$SEARCHSITE" || links "$SEARCHSITE?q=$(qterms "$@")"
+  [ -z "$1" ] && links "$SEARCHSITE" || links "$SEARCHSITE?q=$(qterms "$@")"
 }
 
 # DuckDuckGo search
@@ -278,18 +276,18 @@ function gref() {
 function gblist() {
   local refs
 
-  [ $# -eq 0 ] && refs="refs/heads/"
-  [ $# -ge 1 ] && refs="refs/remotes/$1/"
+  [ -z "$1" ] && refs="refs/heads/"
+  [ -n "$1" ] && refs="refs/remotes/$1/"
 
   local cmd="git for-each-ref --sort=-committerdate --format='%(refname:short) - %(committerdate:relative)' $refs"
 
-  [ $# -ge 2 ] && eval "$cmd | head -n $2" || eval "$cmd"
+  [ -n $2 ] && eval "$cmd | head -n $2" || eval "$cmd"
 }
 
 # 'git stash' without disturbing the working directory (doesn't stash untracked files)
 function gsave() {
   # Print usage
-  [ $# -eq 0 ] && echo "$0 <message>" && return 1
+  [ -z "$1" ] && echo "$0 <message>" && return 1
 
   # Spaces must be in quotes
   [ $# -gt 1 ] && echo "Put the message in quotes" && return 1
@@ -303,7 +301,7 @@ function gsave() {
 # 'git stash' without disturbing the working directory (stash with untracked files)
 function gsaveu() {
   # Print usage
-  [ $# -eq 0 ] && echo "$0 <message>" && return 1
+  [ -z "$1" ] && echo "$0 <message>" && return 1
 
   # Spaces must be in quotes
   [ $# -gt 1 ] && echo "Put the message in quotes" && return 1
