@@ -103,7 +103,7 @@ let mapleader="\<Space>"
 let maplocalleader=","
 
 " User defined command to update plugins
-:command Modup :call dein#update()
+:command! Modup :call dein#update()
 
 " Quicker command line
 map <leader>; :
