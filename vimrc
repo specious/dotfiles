@@ -37,6 +37,7 @@ call dein#add('tpope/vim-commentary')            " Comment/uncomment code
 call dein#add('suy/vim-context-commentstring')   " Detect correct language for comments
 call dein#add('tpope/vim-endwise')               " Automatically close blocks
 call dein#add('chaoren/vim-wordmotion')          " Better word motions
+call dein#add('mg979/vim-visual-multi')          " Visual multi-select
 call dein#add('wellle/targets.vim')              " Extended text objects for editing
 call dein#add('AndrewRadev/dsf.vim')             " Make function calls a text object
 call dein#add('tpope/vim-surround')              " Quickly change surrounding [] () {} ''
@@ -48,7 +49,8 @@ call dein#add('tomtom/tlib_vim')                 " ( Required by vim-snipmate )
 call dein#add('marcweber/vim-addon-mw-utils')    " ( Required by vim-snipmate )
 call dein#add('garbas/vim-snipmate')             " Expand snippets
 call dein#add('honza/vim-snippets')              " Snippet collection
-call dein#add('tpope/vim-fugitive')              " Use git from vim
+call dein#add('tpope/vim-fugitive')              " Git integration
+call dein#add('tpope/vim-rhubarb')               " Github integration
 call dein#add('jreybert/vimagit')                " Use git from vim
 call dein#add('mileszs/ack.vim')                 " Search in files
 call dein#add('vim-airline/vim-airline')         " Fancy status line
