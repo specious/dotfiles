@@ -281,7 +281,7 @@ map <silent> <leader>ff :exec 'silent !firefox-developer-edition % &'<CR>
 au FileType cpp setlocal commentstring=//%s
 
 " Protect default word motions by enabling enhanced motions under a special prefix
-let g:wordmotion_prefix = '<Leader>w'
+let g:wordmotion_prefix = '<Leader>2'
 
 " Configure status line
 let g:airline#extensions#tabline#enabled = 1
