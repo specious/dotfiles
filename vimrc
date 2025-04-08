@@ -145,7 +145,7 @@ map <F3> :set invnumber!<CR>
 map <F4> :set invrelativenumber<CR>
 
 " Split window and switch to the newly created one
-map <leader>s <C-w>s<C-w><C-w>
+map <leader>ss <C-w>s<C-w><C-w>
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
@@ -227,8 +227,8 @@ nnoremap <leader>i i_<Esc>r
 map <leader>, :s/^ //<CR>
 
 " Shift items in a list using sideways.vim
-nnoremap <leader>a :SidewaysLeft<cr>
-nnoremap <leader>d :SidewaysRight<cr>
+nnoremap <leader>sa :SidewaysLeft<cr>
+nnoremap <leader>sd :SidewaysRight<cr>
 
 " Make list items (arguments) a kind of text object
 omap aa <Plug>SidewaysArgumentTextobjA
@@ -248,6 +248,10 @@ map <leader><Space>p :setlocal paste! paste?<CR>
 " Copy to clipboard
 vnoremap <leader>y  "+y
 nnoremap <leader>yy "+yy
+
+" Delete and copy to clipboard
+vnoremap <leader>d "+d
+nnoremap <leader>d "+d
 
 " Paste from clipboard
 noremap <leader>p "+p
