@@ -361,20 +361,20 @@ function qrf() {
 
 # Repeat a string "n" times e.g. repeatstr abc 3
 #
-# Solution: https://stackoverflow.com/a/5349842/
+# From: https://stackoverflow.com/questions/5349718/how-can-i-repeat-a-character-in-bash/5349842#comment31668137_5349842
 function repeatstr() {
   printf "%.0s$1" $(seq 1 "$2")
 }
 
-# Reindent file that uses spaces
-#   e.g. reindent 2 4 index.html
-#   e.g. cat index.html | reindent 2 4
+# Reindent file that already uses spaces for indentation
+#   e.g. retab 2 4 index.html
+#   e.g. cat index.html | retab 2 4
 #
-# Solution: https://unix.stackexchange.com/a/47210/
-function reindent() {
+# Based on: https://unix.stackexchange.com/questions/47171/sed-convert-4-spaces-to-2/47210#47210
+function retab() {
   if [[ $# -gt 2 ]]; then
     f=$(mktemp)
-    reindent "$1" "$2" < "$3" > "$f" && mv "$f" "$3"
+    retab "$1" "$2" < "$3" > "$f" && mv "$f" "$3"
   else
     sed "h;s/[^ ].*//;s/$(repeatstr ' ' "$1")/$(repeatstr ' ' "$2")/g;G;s/\n *//"
   fi
