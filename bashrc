@@ -540,6 +540,7 @@ export LESS="-F -X $LESS"
 #
 # Requires Pygments package: pip install Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
+alias cl='pygmentize -O style=monokai -f console256 -l' # e.g. `cl bash file.sh`
 
 # Depends on the specious/elm-format fork (official mainline does not support configurable tab size)
 alias elm-format="elm-format --tabsize 2 --yes"
