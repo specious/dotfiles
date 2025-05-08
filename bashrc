@@ -527,6 +527,9 @@ alias jwth="jq -R 'split(\".\") | .[0] | @base64d | fromjson'"
 alias jwtp="jq -R 'split(\".\") | .[1] | @base64d | fromjson'"
 alias jwtexp="jq -R 'split(\".\") | .[1] | @base64d | fromjson | .exp' | xargs -I {} sh -c 'echo -e \"UTC: \$(date -u -d @{})\nLocal: \$(date -d @{})\"'"
 
+# Use neovim for vimdiff
+alias vimdiff="nvim -d"
+
 # Reload shell configuration
 alias sss=". /etc/sh"
 
