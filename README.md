@@ -24,13 +24,15 @@ These are the more system-specific shell configuration files. My actual configur
 
 - `~/.zshrc` and `~/.bashrc` source `/etc/sh-local.sh`
 
+And then `sh-local.sh` composes layers into a machine-specific stack:
+
 ```sh
 # /etc/sh-local.sh
 
 . /etc/sh
 . /etc/sh-linux.sh
-. /etc/sh-arch.sh
-. /etc/sh-x1.sh
+. /etc/sh-arch.sh  # Arch linux
+. /etc/sh-x1.sh    # ThinkPad X1
 
 # Local configuration specific to this machine
 ```
