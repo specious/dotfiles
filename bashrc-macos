@@ -1,3 +1,9 @@
 alias pstree="pstree -g 3"
 
+alias bb="pmset -g batt"
+
+alias bsync="brew update"
+alias bup="brew upgrade"
+alias bclean="brew cleanup -s"
+
 export HOMEBREW_NO_ENV_HINTS=1
