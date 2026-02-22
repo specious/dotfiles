@@ -160,9 +160,18 @@ fun! WinHasVNeighbor()
   return winnr('j') != winnr() || winnr('k') != winnr()
 endfun
 
-" Quick window resizing
+" Check if window has another one to the left or right
+fun! WinHasHNeighbor()
+  return winnr('h') != winnr() || winnr('l') != winnr()
+endfun
+
+" Quick vertical window resizing
 noremap <expr> = WinHasVNeighbor() ? '<C-W>+' : ''
 noremap <expr> - WinHasVNeighbor() ? '<C-W>-' : ''
+
+" Quick horizontal window resizing
+noremap <expr> > WinHasHNeighbor() ? '<C-W>>' : ''
+noremap <expr> < WinHasHNeighbor() ? '<C-W><' : ''
 
 " Close current window
 noremap <leader>c <C-w>c
