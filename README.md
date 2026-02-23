@@ -10,26 +10,18 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 - [zsh](https://github.com/specious/bender)
 - [fish](https://gist.github.com/specious/50bac54ac9e4ba9b88dbf24623d51dfc)
 
-## bashrc
-
-It's included with the name `bashrc` here, but it contains functionality designed to be shared by both bash and zsh. I generally save it as `/etc/sh` which is [sourced](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html#index-source) by both my `.bashrc` and `.zshrc` files like this:
-
-```sh
-. /etc/sh
-```
-
 ## bashrc-*
 
-These are the more system-specific shell configuration files. My actual configuration layout looks like:
+These are shell configuration files (compatible with both bash and zsh), split into platform and system specific components (or layers).
 
-- `~/.zshrc` and `~/.bashrc` source `/etc/sh-local.sh`
+My actual configuration layout looks like this:
 
-And then `sh-local.sh` composes layers into a machine-specific stack:
+- `~/.zshrc` and `~/.bashrc` just source `/etc/sh` and then `/etc/sh` internally stacks all the layers that apply to the specific machine being configured (starting with `base`):
 
 ```sh
-# /etc/sh-local.sh
+# /etc/sh
 
-. /etc/sh
+. /etc/sh-base.sh
 . /etc/sh-linux.sh
 . /etc/sh-arch.sh  # Arch linux
 . /etc/sh-x1.sh    # ThinkPad X1
@@ -37,23 +29,23 @@ And then `sh-local.sh` composes layers into a machine-specific stack:
 # Local configuration specific to this machine
 ```
 
+NOTE: Rename each `bashrc-*` to `/etc/sh-*.sh` and create `/etc/sh` on the local system as the authoritative bash/zsh shell config file. zsh-specific configuration can then go inside `~/.zshrc` after the `. /etc/sh` line.
+
+I named the files `bashrc-*` in the git repo so people know what they are. The `.sh` extension is tacked on to trigger syntax highlighting. Feel free to do it your way, but this system works very well.
+
 ## zshrc
 
 These are configuration options specifically for [zsh](https://en.wikipedia.org/wiki/Z_shell), which I generally apply on top of [oh-my-zsh](https://ohmyz.sh/) with my [custom prompt](https://github.com/specious/bender).
 
-Generally my `.zshrc` file sources the `/etc/sh` mentioned earlier.
-
-Add these to your `.zshrc` file if you think they are useful.
+Generally my `.zshrc` file first sources the `/etc/sh` file mentioned earlier and then includes these zshrc-specific additions.
 
 ## vimrc
 
-I love [vim](https://www.vim.org) and use it as my main text editor (this includes [neovim](https://neovim.io)). This `.vimrc` file makes vim way more ergonomic and requires the [dein](https://github.com/Shougo/dein.vim) (the installation of which is unforunately slightly tricky) plugin manager to install the vim plugins.
+I thoroughly enjoy using [vim](https://www.vim.org) and use it as my primary text editor (mostly [neovim](https://neovim.io)). This `.vimrc` file makes vim into an ergonomic environment and requires the [dein](https://github.com/Shougo/dein.vim) plugin manager to install the vim plugins.
 
 I started my vim journey by looking at other people's `.vimrc` files and looking up what each line did to figure out what my configuration file should look like.
 
-In fact, that's how I learned how to use vim.
-
-Adjust the `s:dein_base` value to match your home directory and dein installation directory. The reason I didn't use `~` was so that `root` would load the same `.vimrc` without problems.
+Change the `s:user_home` value to match your user's home directory and the `s:dein_install` value to match your dein installation directory.
 
 Resources I found particularly helpful:
 
@@ -88,7 +80,7 @@ Resources I found helpful:
 
 ## sway-config
 
-I now use [sway](https://swaywm.org) which is a [Wayland](https://wayland.freedesktop.org) compositor that uses a similar configuration to i3.
+On Linux I use [sway](https://swaywm.org) which is a [Wayland](https://wayland.freedesktop.org) compositor that uses a similar configuration to i3.
 
 Save this as `~/.config/sway/config` but change the parts relevant to your system.
 
@@ -97,7 +89,7 @@ Save this as `~/.config/sway/config` but change the parts relevant to your syste
 Firefox add-ons:
 - [QR Code](https://addons.mozilla.org/en-US/firefox/addon/qr-code-address-bar/)
 - [URL Parameters Editor](https://addons.mozilla.org/en-US/firefox/addon/url-parameters-editor/)
-- [Pentadactyl](http://bug.5digits.org/pentadactyl/) (used to work with Firefox but is now availabe as a [Palemoon add-on](https://addons.palemoon.org/addon/pentadactyl-community/))
+- [Pentadactyl](http://bug.5digits.org/pentadactyl/) (used to work with Firefox back in the day but is now availabe as a [Palemoon add-on](https://addons.palemoon.org/addon/pentadactyl-community/))
 
 ## Contributing
 
