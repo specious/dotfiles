@@ -1,4 +1,5 @@
 alias pstree="pstree -g 3"
+alias getip="ipconfig getifaddr en0"
 
 alias bb="pmset -g batt"
 
