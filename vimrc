@@ -113,7 +113,7 @@ let maplocalleader=","
 map <leader>; :
 
 " Reload configuration
-map <leader>ss :source ~/.vimrc<CR>
+map <leader>ss :source ~/.vimrc<cr>:noh<bar>echom "Reloaded config: ".expand('~/.vimrc')<cr>
 
 " Toggle file tree panel
 map <silent> <leader>m :NERDTreeToggle<CR>
