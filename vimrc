@@ -227,6 +227,10 @@ endfun
 
 inoremap <expr> <C-t> SuperTab()
 
+" Navigate to next/previous "blankish" line
+nnoremap <leader>[ ?\v^\s*$<cr>:noh<cr>:echom "Line ".line('.')." (previous blank-ish)"<cr>
+nnoremap <leader>] /\v^\s*$<cr>:noh<cr>:echom "Line ".line('.')." (next blank-ish)"<cr>
+
 " New empty line before or after the current line (uses vim-unimpaired)
 map <CR> [<space>
 map <leader><CR> ]<space>
