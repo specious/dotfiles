@@ -165,13 +165,13 @@ fun! WinHasHNeighbor()
   return winnr('h') != winnr() || winnr('l') != winnr()
 endfun
 
-" Quick vertical window resizing
+" Resize focused window (vertical)
 noremap <expr> = WinHasVNeighbor() ? '<C-W>+' : ''
 noremap <expr> - WinHasVNeighbor() ? '<C-W>-' : ''
 
-" Quick horizontal window resizing
-noremap <expr> > WinHasHNeighbor() ? '<C-W>>' : ''
-noremap <expr> < WinHasHNeighbor() ? '<C-W><' : ''
+" Resize focused window (horizontal)
+noremap <expr> <leader>- WinHasHNeighbor() ? '<C-W><' : ''
+noremap <expr> <leader>= WinHasHNeighbor() ? '<C-W>>' : ''
 
 " Close current window
 noremap <leader>c <C-w>c
