@@ -179,9 +179,9 @@ noremap <leader>c <C-w>c
 " Leave only the current window (close all others)
 noremap <leader>o :only<CR>
 
-" Cycle buffers
-noremap <C-Left>  :bprev<CR>
-noremap <C-Right> :bnext<CR>
+" Cycle buffers (in addition to [b and ]b)
+nnoremap <tab>   :bnext<CR>
+nnoremap <s-tab> :bprev<CR>
 
 " Close current buffer
 noremap <leader>bb :bw<CR>
