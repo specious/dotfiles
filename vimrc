@@ -10,8 +10,8 @@ if &compatible
   set nocp
 endif
 
-let s:user_home = '/home/me'
-let s:dein_install = '.local/share/dein'
+let s:user_home = '/home/me' " <- set this
+let s:dein_install = '.local/share/dein' " <- set this
 let s:dein_base = s:user_home.'/'.s:dein_install
 let s:dein_src = s:dein_base.'/repos/github.com/Shougo/dein.vim'
 
