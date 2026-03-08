@@ -113,7 +113,7 @@ let maplocalleader=","
 map <leader>; :
 
 " Reload configuration
-map <leader>bs :source ~/.vimrc<CR>
+map <leader>ss :source ~/.vimrc<CR>
 
 " Toggle file tree panel
 map <silent> <leader>m :NERDTreeToggle<CR>
@@ -147,7 +147,7 @@ map <F3> :set invnumber!<CR>
 map <F4> :set invrelativenumber<CR>
 
 " Split window and switch to the newly created one
-map <leader>ss <C-w>s<C-w><C-w>
+map <leader>sp <C-w>s<C-w><C-w>
 
 " Easy window switching (Ctrl-j, Ctrl-k, Ctrl-h, Ctrl-l)
 map <C-j> <C-W>j
