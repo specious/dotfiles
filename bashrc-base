@@ -1,7 +1,3 @@
-browser=firefox-developer-edition
-
-alias www="$browser"
-
 # Choose the first available executable
 function choose_bin() {
   local cmd
@@ -148,6 +144,16 @@ function pwdx() {
       return 1
     fi
   fi
+}
+
+# Set DEFAULT_BROWSER on your local machine
+www() {
+  if [[ -z "$DEFAULT_BROWSER" ]]; then
+    echo "Set DEFAULT_BROWSER to e.g. 'open -a safari' or 'firefox-developer-edition'" >&2
+    return 1
+  fi
+
+  sh -c "$DEFAULT_BROWSER $*"
 }
 
 # Start HTTP server
