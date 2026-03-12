@@ -10,7 +10,7 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 - [zsh](https://github.com/specious/bender)
 - [fish](https://gist.github.com/specious/50bac54ac9e4ba9b88dbf24623d51dfc)
 
-## bashrc-*
+## sh-*.sh
 
 These are shell configuration files (compatible with both bash and zsh), split into platform and system specific components (or layers).
 
@@ -22,16 +22,16 @@ My actual configuration layout looks like this:
 # /etc/sh
 
 . /etc/sh-base.sh
-. /etc/sh-linux.sh
-. /etc/sh-arch.sh  # Arch linux
-. /etc/sh-x1.sh    # ThinkPad X1
+. /etc/sh-linux.sh       # Linux specific config
+. /etc/sh-arch-linux.sh  # Arch Linux specific config
+. /etc/sh-thinkpad-x1.sh # ThinkPad X1 specifc config
 
 # Local configuration specific to this machine
 ```
 
-NOTE: Rename each `bashrc-*` to `/etc/sh-*.sh` and create `/etc/sh` on the local system as the authoritative bash/zsh shell config file. zsh-specific configuration can then go inside `~/.zshrc` after the `. /etc/sh` line.
+NOTE: Create `/etc/sh` on the local system and treat it as the authoritative bash/zsh shell config file. zsh-specific configuration can then go inside `~/.zshrc` after the `. /etc/sh` line.
 
-I named the files `bashrc-*` in the git repo so people know what they are. The `.sh` extension is tacked on to trigger syntax highlighting. Feel free to do it your way, but this system works very well.
+The `.sh` extension is tacked on to trigger syntax highlighting. Feel free to do it your way, but this system works very well.
 
 ## zshrc
 
