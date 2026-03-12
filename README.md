@@ -14,12 +14,10 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 
 These are shell configuration files (compatible with both bash and zsh), split into platform and system specific components (or layers).
 
-My actual configuration layout looks like this:
-
-- `~/.zshrc` and `~/.bashrc` just source `/etc/sh` and then `/etc/sh` internally stacks all the layers that apply to the specific machine being configured (starting with `base`):
+Create `/etc/sh` on your local machine and in it correctly stack the layers that apply to your environment and treat it as the authoritative bash/zsh shell config file:
 
 ```sh
-# /etc/sh
+# /etc/sh (ThinkPad X1 running Arch Linux)
 
 . /etc/sh-base.sh
 . /etc/sh-linux.sh       # Linux specific config
@@ -29,7 +27,9 @@ My actual configuration layout looks like this:
 # Local configuration specific to this machine
 ```
 
-NOTE: Create `/etc/sh` on the local system and treat it as the authoritative bash/zsh shell config file. zsh-specific configuration can then go inside `~/.zshrc` after the `. /etc/sh` line.
+`~/.zshrc` and `~/.bashrc` both source `/etc/sh`.
+
+NOTE: zsh-specific configuration can go inside `~/.zshrc` after the `. /etc/sh` line (same for bash).
 
 The `.sh` extension is tacked on to trigger syntax highlighting. Feel free to do it your way, but this system works very well.
 
