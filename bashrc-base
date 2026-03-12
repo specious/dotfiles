@@ -2,6 +2,42 @@ browser=firefox-developer-edition
 
 alias www="$browser"
 
+# Choose the first available executable
+function choose_bin() {
+  local cmd
+
+  for cmd in "$@"; do
+    if command -v "$cmd" &> /dev/null; then
+      echo "$cmd"
+      return
+    fi
+  done
+
+  echo "No available executables found: $@" >&2
+
+  return 1
+}
+
+# Choose the first available command (executable + args)
+function choose_cmd() {
+  local full_cmd bin bins=()
+
+  for full_cmd; do
+    bin="${full_cmd%%[[:space:]]*}"
+
+    if command -v "$bin" >/dev/null 2>&1; then
+      echo "$full_cmd"
+      return 0
+    fi
+
+    bins+=($bin)
+  done
+
+  echo "No available executables found: ${bins[@]}" >&2
+
+  return 1
+}
+
 # Convert decimal to hex
 function d2h() {
   printf '%x\n' "$1"
@@ -262,6 +298,22 @@ function 0x0() {
     echo "Usage: $0 <file> or pipe data to the script"
     return 1
   fi
+}
+
+# Fetch weather
+function wttr() {
+  local location="$1"
+  local url="http://wttr.in"
+
+  if [ -n "$location" ]; then
+    url="${url}/${location}?1"
+  else
+    url="${url}?1"
+  fi
+
+  cmd=$(choose_cmd curl "wget -qO-" "http -b")
+
+  sh -c "$cmd $url"
 }
 
 # Shorten github URL: http://git.io/help
