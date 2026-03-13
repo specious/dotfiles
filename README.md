@@ -41,17 +41,18 @@ Generally my `.zshrc` file first sources the `/etc/sh` file mentioned earlier an
 
 ## vimrc
 
-I thoroughly enjoy using [vim](https://www.vim.org) and use it as my primary text editor (mostly [neovim](https://neovim.io)). This `.vimrc` file makes vim into an ergonomic environment and requires the [dein](https://github.com/Shougo/dein.vim) plugin manager to install the vim plugins.
+I enjoy using [vim](https://www.vim.org) and use it as my primary text editor (mostly [neovim](https://neovim.io)). This `.vimrc` configuration transforms vanilla vim into an ergonomic environment and uses the [dein](https://github.com/Shougo/dein.vim) plugin manager to install and load the referenced vim plugins.
 
-I started my vim journey by looking at other people's `.vimrc` files and looking up what each line did to figure out what my configuration file should look like.
+This `.vimrc` automatically installs `dein` and all the plugins on first startup.
 
-Change the `s:user_home` value to match your user's home directory and the `s:dein_install` value to match your dein installation directory.
+Zero configuration is necessary.
 
 Resources I found particularly helpful:
 
 - [Vim annoyances](https://sanctum.geek.nz/arabesque/vim-annoyances/)
 - [Introduction to managing windows and buffers](https://thevaluable.dev/vim-intermediate/)
 - [Buffers vs Tabs](https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/)
+- [Claude](https://claude.ai/share/1688762f-1852-41f1-bc3e-026f757b5539)
 
 ## screenrc
 
