@@ -135,8 +135,8 @@ map <silent> <leader>m :NERDTreeToggle<CR>
 " Quick save
 map <leader>w :w<CR>
 
-" Save a file as root (doesn't work in neovim)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" Save a file as root
+nnoremap <leader>W :SudaWrite<cr>
 
 " Quit
 map <leader>q :qa!<CR>
