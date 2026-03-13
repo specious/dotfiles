@@ -10,10 +10,16 @@ if &compatible
   set nocp
 endif
 
-let s:user_home = '/home/me' " <- set this
-let s:dein_install = '.local/share/dein' " <- set this
+let s:user_home = expand('~') " <- overridable, if needed
+let s:dein_install = '.local/share/dein' " <- set this, if different
 let s:dein_base = s:user_home.'/'.s:dein_install
 let s:dein_src = s:dein_base.'/repos/github.com/Shougo/dein.vim'
+
+" Auto-install dein
+if !isdirectory(s:dein_src)
+  call mkdir(s:dein_base, 'p')
+  execute '!git clone --depth 1 https://github.com/Shougo/dein.vim' s:dein_src
+endif
 
 execute 'set rtp+='.s:dein_src
 
@@ -65,6 +71,14 @@ call dein#add('flazz/vim-colorschemes')          " Lots of color schemes
 call dein#add('ryanoasis/vim-devicons')          " Fancy icons (must load last)
 
 call dein#end()
+
+" Install plugins on first run (non-interactive)
+if dein#check_install()
+  call dein#install()
+  echom 'Plugins installed!'
+endif
+
+call dein#save_state()
 
 " Enable loading of file type specific plugins and indent rules
 filetype plugin indent on
