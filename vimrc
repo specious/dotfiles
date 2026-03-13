@@ -93,7 +93,6 @@ let g:ctrlp_show_hidden = 0
 
 syntax on
 set shortmess+=I                    " Disable vim intro message
-set binary                          " Don't quietly change characters in a file
 set expandtab                       " Use spaces to indent
 set tabstop=2                       " How many spaces a tab character equals
 set shiftwidth=2                    " How many spaces to shift by when indenting
@@ -270,9 +269,6 @@ nmap <leader>li <Plug>SidewaysArgumentInsertBefore
 nmap <leader>la <Plug>SidewaysArgumentAppendAfter
 nmap <leader>lI <Plug>SidewaysArgumentInsertFirst
 nmap <leader>lA <Plug>SidewaysArgumentAppendLast
-
-" Toggle paste mode
-map <leader><Space>p :setlocal paste! paste?<CR>
 
 " Copy to clipboard
 vnoremap <leader>y  "+y
