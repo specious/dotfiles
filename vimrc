@@ -96,8 +96,7 @@ set shortmess+=I                    " Disable vim intro message
 set expandtab                       " Use spaces to indent
 set tabstop=2                       " How many spaces a tab character equals
 set shiftwidth=2                    " How many spaces to shift by when indenting
-set list listchars=tab:\ \ ,trail:∙ " Show trailing spaces (by default)
-set listchars+=tab:>-               " Show tabs (until turned off)
+set list listchars=tab:>-,trail:∙   " Show tabs and trailing spaces
 set backspace=indent,eol,start      " Conventional backspace behavior
 set display=lastline                " Do not hide contents of long lines
 set undoreload=0                    " Clear undo history when reloading a file
@@ -146,9 +145,11 @@ map <leader>e :e<CR>
 " Display full path of current file
 map <silent> <leader>g :echo expand("%:p")<CR>
 
-" Show/hide tab characters
-map <leader>tabon  :set listchars+=tab:>-<CR>
-map <leader>taboff :set listchars-=tab:>-<CR>
+" Toggle whitespace visualization
+nnoremap <space>tt :set list!<cr>
+
+" Strip trailing whitespace (on every line)
+noremap <leader>tr :%s/\s\+$//e<cr>
 
 " Toggle word wrapping
 map <F2> :set wrap!<CR>
@@ -296,9 +297,6 @@ nnoremap <C-c> :noh<CR><C-c>
 " Expand selected regions (terryma/vim-expand-region)
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-
-" Delete trailing whitespace (on every line)
-noremap <leader>tr :%s/\s\+$//e<CR>
 
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
