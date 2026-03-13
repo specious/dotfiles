@@ -1,6 +1,5 @@
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
-set undodir=~/.vim/undo
 
 " Unload any triggers previously set by this .vimrc
 augroup vimrc | au! | augroup END
@@ -99,7 +98,6 @@ set shiftwidth=2                    " How many spaces to shift by when indenting
 set list listchars=tab:>-,trail:∙   " Show tabs and trailing spaces
 set backspace=indent,eol,start      " Conventional backspace behavior
 set display=lastline                " Do not hide contents of long lines
-set undoreload=0                    " Clear undo history when reloading a file
 set wildmenu                        " Enhanced command line completion
 set wildmode=longest:full,full      " Command line completion behavior
 set wildignore+=.git,.svn
@@ -139,11 +137,27 @@ nnoremap <leader>W :SudaWrite<cr>
 " Quit
 map <leader>q :qa!<CR>
 
-" Reload file in current buffer, thereby resetting undo history
-map <leader>e :e<CR>
+" Reload file
+nnoremap <leader>e :e<cr>
 
 " Display full path of current file
 map <silent> <leader>g :echo expand("%:p")<CR>
+
+" Clear undo history
+fun! ClearUndo()
+  let ul = &undolevels
+  let was_modified = &modified
+  setlocal undolevels=-1
+  exe "normal! ax\<bs>\<esc>"
+  let &undolevels = ul
+  if !was_modified
+    setlocal nomodified
+  endif
+  redraw
+  echo "Undo history cleared"
+endfun
+
+nnoremap <space>u :call ClearUndo()<cr>
 
 " Toggle whitespace visualization
 nnoremap <space>tt :set list!<cr>
