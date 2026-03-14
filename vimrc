@@ -266,8 +266,11 @@ map <leader><CR> ]<space>
 " Insert single character
 nnoremap <leader>i i_<Esc>r
 
-" Shift text left by one space
-map <leader>, :s/^ //<CR>
+" Shift current line left/right by one space
+nnoremap <leader>, :s/^ //<cr>
+nnoremap <leader>. :s/^/ /<cr>
+vnoremap <leader>, :s/^ //<cr>gv
+vnoremap <leader>. :s/^/ /<cr>gv
 
 " Shift items in a list using sideways.vim
 nnoremap <leader>sa :SidewaysLeft<cr>
