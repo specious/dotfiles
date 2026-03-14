@@ -259,12 +259,12 @@ inoremap <expr> <C-t> SuperTab()
 nnoremap <leader>[ ?\v^\s*$<cr>:noh<cr>:echom "Line ".line('.')." (previous blank-ish)"<cr>
 nnoremap <leader>] /\v^\s*$<cr>:noh<cr>:echom "Line ".line('.')." (next blank-ish)"<cr>
 
-" New empty line before or after the current line (uses vim-unimpaired)
-map <CR> [<space>
-map <leader><CR> ]<space>
+" Insert empty line before or after the current line (vim-unimpaired)
+map <cr> [<space>
+map <leader><cr> ]<space>
 
 " Insert single character
-nnoremap <leader>i i_<Esc>r
+nnoremap <leader>i i_<esc>r
 
 " Shift current line left/right by one space
 nnoremap <leader>, :s/^ //<cr>
@@ -318,9 +318,9 @@ map <leader>R :%s///g<left><left>
 " Clear search highlighting
 nnoremap <C-c> :noh<CR><C-c>
 
-" Expand selected regions (terryma/vim-expand-region)
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+" Progressively expand or shrink selection (terryma/vim-expand-region)
+vmap v <plug>(expand_region_expand)
+vmap <c-v> <plug>(expand_region_shrink)
 
 " Execute current file
 map <silent> <leader>rr :!./%<CR>
