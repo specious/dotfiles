@@ -285,21 +285,28 @@ nmap <leader>la <Plug>SidewaysArgumentAppendAfter
 nmap <leader>lI <Plug>SidewaysArgumentInsertFirst
 nmap <leader>lA <Plug>SidewaysArgumentAppendLast
 
-" Copy to clipboard
-vnoremap <leader>y  "+y
+" Copy selection to clipboard
+vnoremap <leader>y "+y
+
+" Copy current line to clipboard
 nnoremap <leader>yy "+yy
 
-" Delete and copy to clipboard
+" Copy entire buffer to clipboard
+nnoremap <leader>yg :%y +<cr>
+
+" Delete and copy selection to clipboard
 vnoremap <leader>d "+d
-nnoremap <leader>d "+d
+
+" Delete current line and copy it to the clipboard
+nnoremap <leader>dd "+dd
 
 " Paste from clipboard
 noremap <leader>p "+p
 
-" Select text most recently edited or pasted
+" Select most recently edited or pasted text
 nnoremap gV `[v`]
 
-" Jump to end of pasted text
+" Jump to end of pasted text on paste
 noremap <silent> p p`]
 
 " Replace highlighted search results
