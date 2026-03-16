@@ -306,8 +306,8 @@ nnoremap <leader>dd "+dd
 " Paste from clipboard
 noremap <leader>p "+p
 
-" Select most recently edited or pasted text
-nnoremap gV `[v`]
+" Select most recently edited/pasted text
+nnoremap <leader>v `[v`]
 
 " Jump to end of pasted text on paste
 noremap <silent> p p`]
