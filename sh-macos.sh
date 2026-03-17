@@ -2,8 +2,9 @@ alias pstree="pstree -g 3"
 alias getip="ipconfig getifaddr en0"
 alias wlist="airport -s" # NOTE: sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/
 
-alias bb="pmset -g batt"
-alias bbb="system_profiler SPPowerDataType"
+alias bb="pmset -g batt" # Battery status
+alias bbb="system_profiler SPPowerDataType" # Detailed power status
+alias bba="pmset -g accps" # Accessory (e.g. keyboard/mouse) battery status
 
 alias bsync="brew update"
 alias bup="brew upgrade"
