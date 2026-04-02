@@ -68,6 +68,10 @@ Resources I found helpful:
 
 Save this as `/etc/tmux.conf` to use it system-wide, or as `~/.config/tmux/tmux.conf`.
 
+## tigrc
+
+Save it as `~/.tigrc` to customize your [tig](https://github.com/jonas/tig) git repository viewer.
+
 ## i3-config
 
 Configuration for the [i3](https://i3wm.org) tiling window manager.
