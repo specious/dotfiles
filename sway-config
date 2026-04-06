@@ -1,10 +1,5 @@
 xwayland disabled
 
-# Enable pipewire (for desktop recording)
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-exec systemctl --user start pipewire-media-session
-
 # Main display (native resolution)
 output eDP-1 scale 1
 
@@ -25,19 +20,26 @@ mouse_warping container
 set $mod Mod4
 
 # Launcher
-bindsym $mod+d exec termite -c ~/.config/termite/config-launcher --name=launcher -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
+# bindsym $mod+d exec termite -c ~/.config/termite/config-launcher --name=launcher -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
+bindsym $mod+d exec kitty --app-id launcher bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
 
 # Style the launcher
-for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8, resize set width 800px
+for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8, resize set width 800px height 1200px
 
 # Full screen screenshot
 bindsym Control+Print exec grim "/home/specious/Downloads/screenshot-$(date +%F-%T).png"
 
-# Select region to save as screenshot
+# Full screen screenshot with delay
+bindsym Control+Shift+Print exec sleep 4; grim "/home/specious/Downloads/screenshot-$(date +%F-%T).png"
+
+# Select region screenshot
 bindsym Control+Alt+Print exec grim -g "$(slurp)" "/home/specious/Downloads/screenshot-$(date +%F-%T).png"
 
+# Select region screenshot with delay
+bindsym Control+Alt+Shift+Print exec grim -g "$(slurp; delay 4)" "/home/specious/Downloads/screenshot-$(date +%F-%T).png"
+
 ##
-## i3-config compatible below
+## Mostly i3-config compatible below
 ##
 
 # Set "windows" key as modifier key
@@ -94,10 +96,10 @@ bindsym $mod+h split h
 # Split (vertical)
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
+# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# Change container layout
+# Switch container layout
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -142,13 +144,13 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-# Reload the configuration file
+# Reload the configuration
 bindsym $mod+Shift+c reload
 
-# Restart i3 in-place (preserves layout/session)
+# Restart in-place (preserves layout/session)
 bindsym $mod+Shift+r restart
 
-# Exit i3
+# Exit
 bindsym Alt+$mod+Shift+e exec "swaymsg exit"
 
 # Window resize mode (you can also use the mouse for that)
@@ -179,9 +181,22 @@ bindsym $mod+r mode "resize"
 
 # Status bar (hidden by default)
 bar {
+  id 1
   status_command i3status
   mode hide
 }
 
 # Toggle status bar
 bindsym $mod+m bar mode toggle
+
+#
+# Custom startup
+#
+
+# Enable pipewire (for desktop recording)
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+exec systemctl --user start pipewire-media-session
+
+exec kitty tmux new-session -A -s s; zsh
+exec kitty tmux new-session -A -s i; zsh
