@@ -506,6 +506,7 @@ alias sx="tmux new-session -t" # new grouped session connected to an existing se
 alias t="tmux new-window"
 alias sls="tmux list-sessions"
 alias pstree="pstree -h"
+alias pstarted="ps -o lstart= -p" # show timestamp when a process was started
 alias dush="du -sh .[!.]* *"
 alias to="trans -I -t" # requires translate-shell
 alias un="trans -I -s"
