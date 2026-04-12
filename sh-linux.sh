@@ -12,6 +12,19 @@ function gdel() {
   gpasswd -d $(whoami) "$1"
 }
 
+function getip() {
+  ip -4 -o addr show scope global up | awk '{split($4,a,"/"); print a[1]; exit}'
+}
+
+function getip6() {
+  ip -6 -o addr show scope global up | awk '{split($4,a,"/"); print a[1]; exit}'
+}
+
+getips() {
+  ip -o -brief addr show up 2>/dev/null \
+    | awk '{for(i=3;i<=NF;i++){split($i,a,"/"); if(a[1] !~ /^127(\\.|$)/ && a[1] !~ /^::1$/ && a[1] !~ /^fe80:/) print a[1]}}'
+}
+
 # Connect to a wifi
 function wifi() {
   [[ $# -eq 0 ]] && echo "Usage: $0 <wifi-name> [<wifi-password>]" && return 1
@@ -40,4 +53,4 @@ alias vplay="mplayer -vo fbdev2"
 alias cplay="mpv -vo caca"
 
 alias bb="acpi -i"
-alias zzz="sudo echo mem > /sys/power/state"
+alias zzz="su -c echo mem > /sys/power/state"
