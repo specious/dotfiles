@@ -63,10 +63,11 @@ call dein#add('mileszs/ack.vim')                 " Search in files
 call dein#add('vim-airline/vim-airline')         " Fancy status line
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('altercation/vim-colors-solarized')
-call dein#add('tpope/vim-vividchalk')
 call dein#add('xolox/vim-misc')
 call dein#add('xolox/vim-colorscheme-switcher')
 call dein#add('flazz/vim-colorschemes')          " Lots of color schemes
+call dein#add('tpope/vim-vividchalk')
+call dein#add('ghifarit53/tokyonight-vim')
 call dein#add('ryanoasis/vim-devicons')          " Fancy icons (must load last)
 
 call dein#end()
@@ -352,7 +353,11 @@ map <F6> :PrevColorScheme<CR>:colorscheme<CR>
 map <F7> :NextColorScheme<CR>:colorscheme<CR>
 
 " Default color scheme
-colorscheme maui
+" colorscheme maui
+" colorscheme gruvbox
+" colorscheme nord
+" colorscheme catppuccin
+colorscheme tokyonight
 
 " Line number color
 highlight LineNr ctermfg=green
