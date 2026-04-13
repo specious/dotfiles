@@ -213,7 +213,8 @@ nnoremap <tab>   :bnext<CR>
 nnoremap <s-tab> :bprev<CR>
 
 " Close current buffer
-noremap <leader>bb :bw<CR>
+nnoremap <leader>bb :bw<cr>
+nnoremap <leader>bB :bw!<cr>
 
 " Is a buffer an unmodified empty buffer
 fun! IsBufferEmptyAndUnmodified(which)
