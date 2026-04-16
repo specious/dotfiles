@@ -1,3 +1,12 @@
+" Requires Vim 8.2+ or NeoVim 0.8+
+if has('nvim') && !has('nvim-0.8')
+  echom 'ERROR: NeoVim 0.8+ required'
+  finish
+elseif !has('nvim') && v:version < 802
+  echom 'ERROR: Vim 8.2+ required'
+  finish
+endif
+
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 
@@ -23,7 +32,7 @@ endif
 execute 'set rtp+='.s:dein_src
 
 call dein#begin(s:dein_base)
-call dein#add(s:dein_src)
+call dein#add('Shougo/dein.vim')
 
 if !has('nvim')
   call dein#add('roxma/nvim-yarp')
