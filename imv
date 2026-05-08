@@ -1,0 +1,10 @@
+[binds]
+
+# Rotate image
+<Ctrl+Shift+R> = exec cp "$imv_current_file" /tmp/vips-orig; exec vips rot /tmp/vips-orig "$imv_current_file" d90 && echo "rotated: $imv_current_file"
+
+# Delete file
+<Ctrl+Shift+X> = exec rm -v "$imv_current_file"; close
+
+# Copy filename to clipboard
+y = exec sh -c 'printf %s "$imv_current_file" | wl-copy && echo "Filename copied: $imv_current_file"'
