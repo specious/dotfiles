@@ -88,6 +88,21 @@ function ff() {
   find . -iname "*$1*"
 }
 
+# Check first path inside a tar/tar.gz/tar.xz/etc.
+function tarh() {
+  tar -tf "$1" 2>/dev/null | sed -e '1q'
+}
+
+# Check first path inside a zip archive
+function ziph() {
+  zipinfo -1 "$1" 2>/dev/null | sed -e '1q'
+}
+
+# Untar and delete tarball
+function untard() {
+  tar xvzf "$1" && rm -v "$1"
+}
+
 # Unzip and delete zip file
 function unzipp() {
   unzip "$1" && rm -v "$1"
