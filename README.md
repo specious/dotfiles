@@ -10,9 +10,9 @@ My custom prompt called *bender* (which includes [git](https://git-scm.com) inte
 - [zsh](https://github.com/specious/bender)
 - [fish](https://gist.github.com/specious/50bac54ac9e4ba9b88dbf24623d51dfc)
 
-## sh-*.sh
+## Layered shell configuration (sh-*.sh)
 
-These are shell configuration files (compatible with both bash and zsh), split into platform and system specific components (or layers).
+These are shell configuration files (compatible with both bash and zsh), split into platform and system specific components, which are meant to be composable like layers.
 
 Create `/etc/sh` on your local machine and in it correctly stack the layers that apply to your environment and treat it as the authoritative bash/zsh shell config file:
 
@@ -31,21 +31,17 @@ Create `/etc/sh` on your local machine and in it correctly stack the layers that
 
 NOTE: zsh-specific configuration can go inside `~/.zshrc` after the `. /etc/sh` line (same for bash).
 
-The `.sh` extension is tacked on to trigger syntax highlighting. Feel free to do it your way, but this system works very well.
+The `.sh` extension is tacked on just to help code editors identify the content as shell code. Feel free to do it your way, but this system works very well.
 
 ## zshrc
 
-These are configuration options specifically for [zsh](https://en.wikipedia.org/wiki/Z_shell), which I generally apply on top of [oh-my-zsh](https://ohmyz.sh/) with my [custom prompt](https://github.com/specious/bender).
+These are [zsh](https://en.wikipedia.org/wiki/Z_shell)-specific configuration options, which I generally apply on top of [oh-my-zsh](https://ohmyz.sh/) with my [custom prompt](https://github.com/specious/bender).
 
-Generally my `.zshrc` file first sources the `/etc/sh` file mentioned earlier and then includes these zshrc-specific additions.
+Generally my `.zshrc` file first sources the `/etc/sh` file mentioned earlier (the non-zsh-specific stack) and then includes these zshrc-specific additions.
 
 ## vimrc
 
-I enjoy using [vim](https://www.vim.org) and use it as my primary text editor (mostly [neovim](https://neovim.io)). This `.vimrc` configuration transforms vanilla vim into an ergonomic environment and uses the [dein](https://github.com/Shougo/dein.vim) plugin manager to install and load the referenced vim plugins.
-
-This `.vimrc` automatically installs `dein` and all the plugins on first startup.
-
-Zero configuration is necessary.
+I enjoy using [vim](https://www.vim.org) and use it as my primary text editor (mostly [neovim](https://neovim.io)). This `.vimrc` configuration transforms vanilla vim into an ergonomic environment and uses the [dein](https://github.com/Shougo/dein.vim) plugin manager to install and load the referenced vim plugins (`dein` and plugins are automatically installed on first startup with zero configuration).
 
 Resources I found particularly helpful:
 
