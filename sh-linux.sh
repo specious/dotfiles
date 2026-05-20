@@ -20,32 +20,53 @@ function getip6() {
   ip -6 -o addr show scope global up | awk '{split($4,a,"/"); print a[1]; exit}'
 }
 
-getips() {
+function getips() {
   ip -o -brief addr show up 2>/dev/null \
     | awk '{for(i=3;i<=NF;i++){split($i,a,"/"); if(a[1] !~ /^127(\\.|$)/ && a[1] !~ /^::1$/ && a[1] !~ /^fe80:/) print a[1]}}'
 }
 
 # Connect to a wifi
 function wifi() {
-  [[ $# -eq 0 ]] && echo "Usage: $0 <wifi-name> [<wifi-password>]" && return 1
+  if [[ $# -eq 0 ]]; then
+    ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2}')
+    if [[ -n "$ssid" ]]; then
+      echo "$ssid"
+    else
+      echo "Not connected to a wifi"
+    fi
+
+    return
+  fi
 
   if [[ $# == 1 ]]; then
-    iwctl station wlan0 connect "$1"
+    nmcli device wifi connect "$1"
   else
-    iwctl -P "$2" station wlan0 connect "$1"
+    nmcli device wifi connect "$1" password "$2"
   fi
 }
 
 # Show wifi password
-function wpasswd () {
-  nmcli connection show "$1" -s | grep psk
+function wpasswd() {
+  # Use active Wi-Fi connection (if no arguments)
+  if [[ $# -eq 0 ]]; then
+    ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2}')
+    if [[ -z "$ssid" ]]; then
+      echo "Usage: wpasswd <ssid>"
+      return 1
+    fi
+  else
+    ssid="$1"
+  fi
+
+  nmcli -s -g 802-11-wireless-security.psk connection show "$ssid"
 }
 
 alias wifis="nmtui connect"
-alias wknown="iwctl known-networks list"
 alias wlist="nmcli dev wifi list"
 alias wscan="iwlist wlan0 scanning"
-alias killwifi="iwctl station wlan0 disconnect && killall dhclient"
+alias wknown="iwctl known-networks list || nmcli connection show"
+alias woff="nmcli radio wifi off"
+alias won="nmcli radio wifi on"
 alias rewi="sudo systemctl restart NetworkManager"
 
 alias pmix="pulsemixer"
